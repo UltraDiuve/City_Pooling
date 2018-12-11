@@ -43,7 +43,7 @@ class geography():
         
         Args:
             cities_count (int): the count of cities in the geography/
-            cities_coordinates (optional, numpy array of shape (cities_count, cities_count)): the coordinates of the cities. If
+            cities_coordinates (optional, numpy array of shape (cities_count, 2)): the coordinates of the cities. If
             omitted, will randomly place the cities in the plane.
             cities_names (optional, dict of strings): the names of the cities. If omitted will default to a dict of cities with
             the names 'City0', 'City1', ...
@@ -52,8 +52,7 @@ class geography():
             """
         
         self.cities_count = cities_count
-        if cities_coordinates == None:
-            self.coordinates = np.random.rand(cities_count, 2)
+        self.coordinates = np.random.rand(cities_count, 2) if cities_coordinates is None else cities_coordinates
         if cities_names == None:
             self.names = {i: ("City " + str(i)) for i in range(cities_count) }
         else:
