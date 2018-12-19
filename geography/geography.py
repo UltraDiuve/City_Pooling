@@ -18,7 +18,7 @@ class geography():
     
     Attributes:
         cities_count (int): Count of cities in the geography.
-        coordinates (numpy array of shape (cities_count, 2)): an iterable of (x, y) coordinates of length cities_count.
+        coordinates (numpy array of shape (2, cities_count)): [X,Y] where X is Xs of cities and Y is Ys of cities.
         cities_names (dict of string): a dictionnary of strings, indexed by integers.
         dist_matrix (numpy array of shape (cities_count, cities_count)): the distance matrix of the geography.
     
@@ -33,7 +33,7 @@ class geography():
         Returns:
             Nothing.
         """
-        self.dist_matrix = np.array([[dist(self.coordinates[i], self.coordinates[j]) for j in range(self.cities_count)] 
+        self.dist_matrix = np.array([[dist(self.coordinates[:,i], self.coordinates[:,j]) for j in range(self.cities_count)] 
                                      for i in range(self.cities_count)])
             
     def __init__(self, cities_count, cities_coordinates=None, cities_names=None, dist_func=dist):
@@ -43,7 +43,7 @@ class geography():
         
         Args:
             cities_count (int): the count of cities in the geography/
-            cities_coordinates (optional, numpy array of shape (cities_count, 2)): the coordinates of the cities. If
+            cities_coordinates (optional, numpy array of shape (2, cities_count)): the coordinates of the cities. If
             omitted, will randomly place the cities in the plane.
             cities_names (optional, dict of strings): the names of the cities. If omitted will default to a dict of cities with
             the names 'City0', 'City1', ...
@@ -52,7 +52,7 @@ class geography():
             """
         
         self.cities_count = cities_count
-        self.coordinates = np.random.rand(cities_count, 2) if cities_coordinates is None else cities_coordinates
+        self.coordinates = np.random.rand(2, cities_count) if cities_coordinates is None else cities_coordinates
         self.names = {i: ("City " + str(i)) for i in range(cities_count) } if cities_names is None else cities_names
 
         # initialize distance matrix
@@ -78,10 +78,10 @@ class geography():
         
         # Graphical representation of the map of the geography
         ax_map = plt.subplot(121)
-        plt.scatter(self.coordinates[:,0], self.coordinates[:,1])
+        plt.scatter(*self.coordinates)
         if show_names:
             for i in range(self.cities_count):
-                plt.annotate(self.names[i], self.coordinates[i])
+                plt.annotate(self.names[i], self.coordinates[:,i])
         plt.tick_params(
             axis='both',          
             which='both',      
