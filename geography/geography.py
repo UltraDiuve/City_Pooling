@@ -124,18 +124,20 @@ class geography():
         # first plot the usual and get the axes so as to update them 
         ax_map, ax_dist_matrix = self.show(show_names=show_names, **kwargs)
         
+
         # defining the color map
         pools_cmap, color_index = ['r','g','b','k','c','y','m'], 0
         
         # go through each pool of the configuration
         for pool, pool_content in configuration.items():
             list_content, pool_size = list(pool_content), len(pool_content)
+
             # set the color for the current pool
             color = pools_cmap[color_index]
             color_index += 1
             # draw a line between every couple of (city i, city j) where j > i (so as to draw each line only once)
+
             for i in range(pool_size):
                 for j in range(i+1, pool_size):
-                    x = [self.coordinates[list_content[i]][0], self.coordinates[list_content[j]][0]]
-                    y = [self.coordinates[list_content[i]][1], self.coordinates[list_content[j]][1]]
-                    ax_map.plot(x, y, '-', color=color)
+                    coords = self.coordinates[:,[list_content[i],list_content[j]]]
+                    ax_map.plot(*coords, '-', color=color)
