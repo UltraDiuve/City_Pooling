@@ -36,7 +36,7 @@ class geography():
         self.dist_matrix = np.array([[dist(self.coordinates[i], self.coordinates[j]) for j in range(self.cities_count)] 
                                      for i in range(self.cities_count)])
             
-    def __init__(self, cities_count, cities_coordinates=None, cities_names=None):
+    def __init__(self, cities_count, cities_coordinates=None, cities_names=None, dist_func=dist):
         """ Constructor method of geography
         
         This method will construct a geography from parameters and initialize its distance matrix
@@ -53,11 +53,10 @@ class geography():
         
         self.cities_count = cities_count
         self.coordinates = np.random.rand(cities_count, 2) if cities_coordinates is None else cities_coordinates
-        if cities_names == None:
-            self.names = {i: ("City " + str(i)) for i in range(cities_count) }
-        else:
-            self.names = cities_names
-        self.init_dist_matrix()
+        self.names = {i: ("City " + str(i)) for i in range(cities_count) } if cities_names is None else cities_names
+
+        # initialize distance matrix
+        self.init_dist_matrix(func=dist_func)
 
     
     def show(self, show_names=False, **kwargs):
