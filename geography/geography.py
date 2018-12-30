@@ -1,10 +1,33 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.patches import Rectangle
 
 def dist(city1, city2):
     """ function that returns the euclidian distance betweend 2 cities in the plane (each city being 2 coordinates) """
     return( ((city1[0]-city2[0])**2. + (city1[1]-city2[1])**2.)**0.5 )
+
+def permute_array(arr, seq):
+    """ function that returns a permuted copy of an array, after applying the permutation in the seq sequence
+
+    This function's purpose is to enable distance matrices permutations, that is, for example, to see the distance matrix
+    after having permuted the last two items.
+
+    Args:
+        arr (numpy array): the array to permute. It should be square of size n.
+        seq (iterable of int): a permutation of range(n) (should be of length n and contain every integer from 0 to n)
+
+    Returns:
+        A copy of the original array, after the permutation has been applied.
+
+    Examples:
+        >>> import numpy as np
+        >>> test = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+        >>> print(permute_array(test, [0, 2, 1]))
+        [[1 3 2] [7 9 8] [4 6 5]]
+
+    """
+    return(arr[:, seq][seq, :])
 
 class geography():
     """ Class defining a geography, with cities coordinates, distance matrix, and helper functions.
@@ -19,7 +42,7 @@ class geography():
     Attributes:
         cities_count (int): Count of cities in the geography.
         coordinates (numpy array of shape (2, cities_count)): [X,Y] where X is Xs of cities and Y is Ys of cities.
-        cities_names (dict of string): a dictionnary of strings, indexed by integers.
+        cities_names (numpy array of string): an array of strings.
         dist_matrix (numpy array of shape (cities_count, cities_count)): the distance matrix of the geography.
     
     """
@@ -45,15 +68,16 @@ class geography():
             cities_count (int): the count of cities in the geography/
             cities_coordinates (optional, numpy array of shape (2, cities_count)): the coordinates of the cities. If
             omitted, will randomly place the cities in the plane.
-            cities_names (optional, dict of strings): the names of the cities. If omitted will default to a dict of cities with
+            cities_names (optional, iterable of strings): the names of the cities. If omitted will default to an array of cities with
             the names 'City0', 'City1', ...
         
-        Returns: Nothing.
+        Returns: 
+            Nothing.
             """
         
         self.cities_count = cities_count
         self.coordinates = np.random.rand(2, cities_count) if cities_coordinates is None else cities_coordinates
-        self.names = {i: ("City " + str(i)) for i in range(cities_count) } if cities_names is None else cities_names
+        self.names = np.array([("City " + str(i)) for i in range(cities_count)]) if cities_names is None else np.array(cities_names)
 
         # initialize distance matrix
         self.init_dist_matrix(func=dist_func)
@@ -90,7 +114,7 @@ class geography():
             labelright=False)
         axis_in.set_title('Map of Geography\n', fontsize=24)
 
-    def draw_dist_matrix(self, axis_in, show_names=False, kwargs={}):
+    def draw_dist_matrix(self, axis_in, dist_matrix, names=None, show_names=False, kwargs={}):
         """ Method that will populate an axis with the distance matrix
 
         This method is called through the show method and will populate the axis with the distance matrix.
@@ -104,9 +128,9 @@ class geography():
             Nothing.
 
         """
-        yticklabels = self.names.values() if show_names else False
-        xticklabels = self.names.values() if show_names else False
-        sns.heatmap(self.dist_matrix, 
+        yticklabels = self.names if names is None else names
+        xticklabels = self.names if names is None else names
+        sns.heatmap(dist_matrix, 
                     cmap="Blues", 
                     cbar=False, 
                     xticklabels=xticklabels, 
@@ -128,7 +152,7 @@ class geography():
             set to annot=False).
         
         Returns:
-            Returns a tuple of the 2 axes created, so that they can be updated further on.
+            A tuple of the 2 axis created, so that they can be updated further on.
         """
 
         plt.figure(figsize=(20,10))
@@ -139,31 +163,50 @@ class geography():
 
         # Distance matrix.
         ax_dist_matrix = plt.subplot(122)
-        self.draw_dist_matrix(ax_dist_matrix, show_names=show_names, kwargs=dist_matrix_kwargs)
+        self.draw_dist_matrix(ax_dist_matrix, self.dist_matrix, show_names=show_names, kwargs=dist_matrix_kwargs)
 
         return(ax_map, ax_dist_matrix)
     
-    def show_config(self, configuration, show_names=False, **kwargs):
+    def show_config(self, configuration, show_names=False, map_kwargs={}, dist_matrix_kwargs={}):
         """ Method which will give a representation of a configuration being applied to the geography
         
         This method will show the geography map with the configuration highlighted and a reordered distance matrix. This 
         function is build on top of the simpler `show` method of this class.
         
         Args:
-            configuration (dict of sets): the configuration to apply. The index of the dict should be integers, and the sets in
+            configuration (dict of iterables): the configuration to apply. The index of the dict should be integers, and the sets in
             it should be city indexes.
             
         Note:
             no city index should be inside multiple pools.
         """
-        # first plot the usual and get the axes so as to update them 
-        ax_map, ax_dist_matrix = self.show(show_names=show_names, **kwargs)
-        
+        plt.figure(figsize=(20,10))
 
         # defining the color map
         pools_cmap, color_index = ['r','g','b','k','c','y','m'], 0
         
+        # first plot the usual map of geography 
+        ax_map = plt.subplot(121)
+        self.draw_map(ax_map, show_names=show_names, kwargs=map_kwargs)
+        
+        # then, draw a distance matrix on a permuted array
+        ax_dist_matrix = plt.subplot(122)
+        # first of all, construct the permutation sequence
+        seq = list()
+        for pool, pool_content in sorted(configuration.items()):
+            seq.extend(pool_content)
+        remaining_nums = set(range(self.cities_count))
+        for num in seq:
+            remaining_nums.remove(num)
+        seq.extend(sorted(list(remaining_nums)))
+        # get the permuted distance matrix
+        permuted_arr = permute_array(self.dist_matrix, seq)
+        permuted_names = self.names[seq]
+        self.draw_dist_matrix(ax_dist_matrix, permuted_arr, show_names=True, names=permuted_names, kwargs=dist_matrix_kwargs)
+
         # go through each pool of the configuration
+        # cur_dist_matrix_coord is here to know where to draw the squares representing the pools in the distance matrix
+        cur_dist_matrix_coord=0
         for pool, pool_content in configuration.items():
             list_content, pool_size = list(pool_content), len(pool_content)
 
@@ -171,8 +214,10 @@ class geography():
             color = pools_cmap[color_index]
             color_index += 1
             # draw a line between every couple of (city i, city j) where j > i (so as to draw each line only once)
-
             for i in range(pool_size):
                 for j in range(i+1, pool_size):
                     coords = self.coordinates[:,[list_content[i],list_content[j]]]
                     ax_map.plot(*coords, '-', color=color)
+            # highlight the distances for each pool in the distance matrix
+            ax_dist_matrix.add_patch(Rectangle((cur_dist_matrix_coord, cur_dist_matrix_coord), pool_size, pool_size, fill=False, edgecolor=color, lw=3))
+            cur_dist_matrix_coord += pool_size
