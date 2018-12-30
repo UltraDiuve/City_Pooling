@@ -5,7 +5,7 @@ So far, this project is a Jupyter Notebook and a single geography package.
 The notebook is intended to review the "published" works whereas the main classes will be defined in the packages/modules.
 
 # TO DO
-- [ ] in geography, refactor show and show_config so that axes are created first and then updated in a func
+- [X] in geography, refactor show and show_config so that axes are created first and then updated in a func
 - [ ] in geography, add a legend with pool colors
 - [ ] in geography, in the constructor, enable the possibility to normalize the distance matrix with a user defined max value
 - [ ] in geography, in show_config, have the distance matrix sorted by pool
