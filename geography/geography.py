@@ -59,30 +59,25 @@ class geography():
         self.init_dist_matrix(func=dist_func)
 
     
-    def show(self, show_names=False, **kwargs):
-        """ Method to show a graphical representation of the geography without a configuration applied
-        
-        This method will draw the geography in a plane, and give a view of the distance matrix in the form of a seaborn heatmap.
-        
+    def draw_map(self, axis_in, show_names=False, kwargs={}):
+        """ Method that will populate an axis with the map of the geograpy
+
+        This method is called through the show method and will populate the axis with the map.
+
         Args:
-            show_names (bool, optional): whether or not to show the names of the cities in the representation, both in the 
-            geography map and the distance matrix. Defaults to False.
-            **kwargs (args, optional): additional formatting options that will apply to the distance matrix heatmap. Mainly used 
-            to set annot to True or false to improve readability of the distance matrix (high cities_count geographies should be 
-            set to annot=False).
-        
+            axis_in (axis): the axis to which draw the map of the geography.
+            show_names (bool, optional): whether or not to show the names of the cities in the map. Is passed by the show method.
+            kwargs (dict, optional): kwargs to be used in the drawing of the map.
+
         Returns:
-            Returns a tuple of the 2 axes created, so that they can be updated further on.
+            Nothing.
+
         """
-        plt.figure(figsize=(20,10))
-        
-        # Graphical representation of the map of the geography
-        ax_map = plt.subplot(121)
-        plt.scatter(*self.coordinates)
+        axis_in.scatter(*self.coordinates)
         if show_names:
             for i in range(self.cities_count):
-                plt.annotate(self.names[i], self.coordinates[:,i])
-        plt.tick_params(
+                axis_in.annotate(self.names[i], self.coordinates[:,i])
+        axis_in.tick_params(
             axis='both',          
             which='both',      
             bottom=False,      
@@ -93,10 +88,22 @@ class geography():
             labeltop=False,
             labelleft=False,
             labelright=False)
-        ax_map.set_title('Map of Geography\n', fontsize=24)
-        
-        # Distance matrix.
-        ax_dist_matrix = plt.subplot(122)
+        axis_in.set_title('Map of Geography\n', fontsize=24)
+
+    def draw_dist_matrix(self, axis_in, show_names=False, kwargs={}):
+        """ Method that will populate an axis with the distance matrix
+
+        This method is called through the show method and will populate the axis with the distance matrix.
+
+        Args:
+            axis_in (axis): the axis to which draw the distance matrix.
+            show_names (bool, optional): whether or not to show the names of the cities in the distance matrix. Is passed by the show method.
+            kwargs (dict, optional): kwargs to be used in the drawing of the distance matrix (so far, only 'annot' is used).
+
+        Returns:
+            Nothing.
+
+        """
         yticklabels = self.names.values() if show_names else False
         xticklabels = self.names.values() if show_names else False
         sns.heatmap(self.dist_matrix, 
@@ -105,7 +112,35 @@ class geography():
                     xticklabels=xticklabels, 
                     yticklabels=yticklabels,  
                     **kwargs)
-        ax_dist_matrix.set_title('Distance Matrix\n', fontsize=24)
+        axis_in.set_title('Distance Matrix\n', fontsize=24)
+
+    def show(self, show_names=False, map_kwargs={}, dist_matrix_kwargs={}):
+        """ Method to show a graphical representation of the geography without a configuration applied
+        
+        This method will draw the geography in a plane, and give a view of the distance matrix in the form of a seaborn heatmap.
+        
+        Args:
+            show_names (bool, optional): whether or not to show the names of the cities in the representation, both in the 
+            geography map and the distance matrix. Defaults to False.
+            map_kwargs (args, optional): additional formatting options that will apply to the map axis. Not used yet.
+            dist_matrix_kwargs (args, optional): additional formatting options that will apply to the distance matrix axis. Mainly used 
+            to set annot to True or false to improve readability of the distance matrix (high cities_count geographies should be 
+            set to annot=False).
+        
+        Returns:
+            Returns a tuple of the 2 axes created, so that they can be updated further on.
+        """
+
+        plt.figure(figsize=(20,10))
+        
+        # Graphical representation of the map of the geography
+        ax_map = plt.subplot(121)
+        self.draw_map(ax_map, show_names=show_names, kwargs=map_kwargs)
+
+        # Distance matrix.
+        ax_dist_matrix = plt.subplot(122)
+        self.draw_dist_matrix(ax_dist_matrix, show_names=show_names, kwargs=dist_matrix_kwargs)
+
         return(ax_map, ax_dist_matrix)
     
     def show_config(self, configuration, show_names=False, **kwargs):
