@@ -8,8 +8,8 @@ The notebook is intended to review the "published" works whereas the main classe
 - [X] in geography, refactor show and show_config so that axes are created first and then updated in a func
 - [ ] in geography, add a legend with pool colors
 - [ ] in geography, in the constructor, enable the possibility to normalize the distance matrix with a user defined max value
-- [ ] in geography, in show_config, have the distance matrix sorted by pool
-- [ ] in geography, in show_config, try to have the pools highlighted with the pool color
+- [X] in geography, in show_config, have the distance matrix sorted by pool
+- [X] in geography, in show_config, try to have the pools highlighted with the pool color
 - [ ] in notebook, initialize work on the combinatory analysis
 - [ ] in project, initialize work on a solver class
 - [ ] in solver, allow to user define a timeout and show the proportion of cominations explored
