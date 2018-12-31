@@ -1,8 +1,11 @@
 # City_Pooling
 A personal project to optimize city pooling during sports competitions
 
-So far, this project is a Jupyter Notebook and a single geography package.
+So far, this project is a Jupyter Notebook and some packages:
+- geography
+- solver
 The notebook is intended to review the "published" works whereas the main classes will be defined in the packages/modules.
+The notebook is the "main" file of this project.
 
 # TO DO
 - [X] in geography, refactor show and show_config so that axes are created first and then updated in a func
