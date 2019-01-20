@@ -1,7 +1,10 @@
-# City_Pooling
+==============
+City_Pooling
+==============
 A personal project to optimize city pooling during sports competitions
 
 So far, this project is a Jupyter Notebook and some packages:
+
 - geography
 - solver
 
