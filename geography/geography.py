@@ -34,6 +34,7 @@ class geography():
     
     This class implements a geography with a list of named cities with their associated coordinates in a plane.
     Helper functions enable to :
+
     - give a visual representation of that geography
     - give a visual representation of the distance matrix
     - give a visual representation of a configuration, a configuration being the repartition of some or all cities in pools
@@ -41,17 +42,16 @@ class geography():
     
     Attributes:
         cities_count (int): Count of cities in the geography.
-        coordinates (numpy array of shape (2, cities_count)): [X,Y] where X is Xs of cities and Y is Ys of cities.
+        coordinates (numpy array of shape(2, cities_count)): [X,Y] where X is Xs of cities and Y is Ys of cities.
         cities_names (numpy array of string): an array of strings.
-        dist_matrix (numpy array of shape (cities_count, cities_count)): the distance matrix of the geography.
+        dist_matrix (numpy array of shape(cities_count, cities_count)): the distance matrix of the geography.
     
     """
     def init_dist_matrix(self,func=dist):
         """ Method which will initialize the distance matrix
         
         Args:
-            func (function): a distance function which returns a positive number from a couple of cities. If unspecified,
-            will use the euclidean distance in the plane.
+            func (function): a distance function which returns a positive number from a couple of cities. If unspecified, will use the euclidean distance in the plane (`dist` function).
 
         Returns:
             Nothing.
@@ -144,12 +144,9 @@ class geography():
         This method will draw the geography in a plane, and give a view of the distance matrix in the form of a seaborn heatmap.
         
         Args:
-            show_names (bool, optional): whether or not to show the names of the cities in the representation, both in the 
-            geography map and the distance matrix. Defaults to False.
+            show_names (bool, optional): whether or not to show the names of the cities in the representation, both in the geography map and the distance matrix. Defaults to False.
             map_kwargs (args, optional): additional formatting options that will apply to the map axis. Not used yet.
-            dist_matrix_kwargs (args, optional): additional formatting options that will apply to the distance matrix axis. Mainly used 
-            to set annot to True or false to improve readability of the distance matrix (high cities_count geographies should be 
-            set to annot=False).
+            dist_matrix_kwargs (args, optional): additional formatting options that will apply to the distance matrix axis. Mainly used to set annot to True or false to improve readability of the distance matrix (high cities_count geographies should be set to annot=False).
         
         Returns:
             A tuple of the 2 axis created, so that they can be updated further on.
@@ -174,8 +171,7 @@ class geography():
         function is build on top of the simpler `show` method of this class.
         
         Args:
-            configuration (dict of iterables): the configuration to apply. The index of the dict should be integers, and the sets in
-            it should be city indexes.
+            configuration (dict of iterables): the configuration to apply. The index of the dict should be integers, and the values in the iterables should be city indexes.
             
         Note:
             no city index should be inside multiple pools.
