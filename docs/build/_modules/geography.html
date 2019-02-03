@@ -76,8 +76,11 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../City Pooling.html">City Pooling Notebook</a></li>
+</ul>
+
             
           
         </div>
@@ -144,11 +147,11 @@
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="k">import</span> <span class="n">Rectangle</span>
 
-<div class="viewcode-block" id="dist"><a class="viewcode-back" href="../index.html#geography.dist">[docs]</a><span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">city1</span><span class="p">,</span> <span class="n">city2</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">city1</span><span class="p">,</span> <span class="n">city2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; function that returns the euclidian distance betweend 2 cities in the plane (each city being 2 coordinates) &quot;&quot;&quot;</span>
-    <span class="k">return</span><span class="p">(</span> <span class="p">((</span><span class="n">city1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">city2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mf">2.</span> <span class="o">+</span> <span class="p">(</span><span class="n">city1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">city2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span></div>
+    <span class="k">return</span><span class="p">(</span> <span class="p">((</span><span class="n">city1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">city2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mf">2.</span> <span class="o">+</span> <span class="p">(</span><span class="n">city1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">city2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span>
 
-<div class="viewcode-block" id="permute_array"><a class="viewcode-back" href="../index.html#geography.permute_array">[docs]</a><span class="k">def</span> <span class="nf">permute_array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">permute_array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; function that returns a permuted copy of an array, after applying the permutation in the seq sequence</span>
 
 <span class="sd">    This function&#39;s purpose is to enable distance matrices permutations, that is, for example, to see the distance matrix</span>
@@ -168,7 +171,7 @@
 <span class="sd">        [[1 3 2] [7 9 8] [4 6 5]]</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span> <span class="n">seq</span><span class="p">][</span><span class="n">seq</span><span class="p">,</span> <span class="p">:])</span></div>
+    <span class="k">return</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span> <span class="n">seq</span><span class="p">][</span><span class="n">seq</span><span class="p">,</span> <span class="p">:])</span>
 
 <div class="viewcode-block" id="geography"><a class="viewcode-back" href="../index.html#geography.geography">[docs]</a><span class="k">class</span> <span class="nc">geography</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Class defining a geography, with cities coordinates, distance matrix, and helper functions.</span>

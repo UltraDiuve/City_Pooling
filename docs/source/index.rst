@@ -10,11 +10,14 @@ Welcome to City Pooling's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   City Pooling
+
 .. automodule:: geography
 
 .. autoclass:: geography
    :members:
 
+   
 
 Indices and tables
 ==================

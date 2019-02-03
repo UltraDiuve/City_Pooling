@@ -12,6 +12,7 @@ The notebook is intended to review the "published" works whereas the main classe
 The notebook is the "main" file of this project.
 
 # TO DO
+- [ ] VERY VERY IMORTANT ! Notebook has been manually copied to docs/. See how to automate things.
 - [X] in geography, refactor show and show_config so that axes are created first and then updated in a func
 - [ ] in geography, add a legend with pool colors
 - [ ] in geography, in the constructor, enable the possibility to normalize the distance matrix with a user defined max value
