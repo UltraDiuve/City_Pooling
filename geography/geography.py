@@ -27,13 +27,14 @@ def dist(city1, city2):
 def permute_array(arr, seq):
     """ Function to "square permute" a 2D array
 
-    This function's purpose is to enable distance matrices permutations. That 
-    is, for example, permute both lines and columns of the array so as to 
+    This function's purpose is to enable distance matrices permutations. That
+    is, for example, permute both lines and columns of the array so as to
     reorder a distance matrix.
 
     Args:
         arr (numpy array): the array to permute. It should be square of size n.
-        seq (iterable of int): a permutation of range(n) (should be of length n and contain every integer from 0 to n)
+        seq (iterable of int): a permutation of range(n) (should be of length n
+            and contain every integer from 0 to n-1)
 
     Returns:
         A copy of the original array, after the permutation has been applied.
@@ -56,20 +57,25 @@ class geography():
 
     - give a visual representation of that geography
     - give a visual representation of the distance matrix
-    - give a visual representation of a configuration, a configuration being the repartition of some or all cities in pools
+    - give a visual representation of a configuration, a configuration being
+      the repartition of some or all cities in pools
 
     Attributes:
         cities_count (int): Count of cities in the geography.
-        coordinates (numpy array of shape(2, cities_count)): [X,Y] where X is Xs of cities and Y is Ys of cities.
+        coordinates (numpy array of shape(2, cities_count)): [X,Y] where X is
+            Xs of cities and Y is Ys of cities.
         cities_names (numpy array of string): an array of strings.
-        dist_matrix (numpy array of shape(cities_count, cities_count)): the distance matrix of the geography.
+        dist_matrix (numpy array of shape(cities_count, cities_count)): the
+            distance matrix of the geography.
 
     """
     def init_dist_matrix(self, func=dist):
         """ Method which will initialize the distance matrix
 
         Args:
-            func (function): a distance function which returns a positive number from a couple of cities. If unspecified, will use the euclidean distance in the plane (:func:`dist` function).
+            func (function): a distance function which returns a positive
+                number from a couple of cities. If unspecified, will use the
+                euclidean distance in the plane (:func:`dist` function).
 
         Returns:
             Nothing.
@@ -88,9 +94,15 @@ class geography():
 
         Args:
             cities_count (int): the count of cities in the geography/
-            cities_coordinates (optional, numpy array of shape (2, cities_count)): the coordinates of the cities. If omitted, will randomly place the cities in the plane.
-            cities_names (optional, iterable of strings): the names of the cities. If omitted will default to an array of cities with the names 'City0', 'City1', ...
-            dist_func (function): the distance function to be used to populate the distance matrix. Default to :func:`dist` which is the euclidean distance
+            cities_coordinates (optional, array of shape (2, cities_count)):
+                the coordinates of the cities. If omitted, will randomly place
+                the cities in the plane.
+            cities_names (optional, iterable of strings): the names of the
+                cities. If omitted will default to an array of cities with the
+                names 'City0', 'City1', ...
+            dist_func (function): the distance function to be used to populate
+                the distance matrix. Default to :func:`dist` which is the
+                euclidean distance
 
         Returns:
             The initialized :class:`geography`.
@@ -111,8 +123,10 @@ class geography():
 
         Args:
             axis_in (axis): the axis to which draw the map of the geography.
-            show_names (bool, optional): whether or not to show the names of the cities in the map. Is passed by the :meth:`show` method.
-            kwargs (dict, optional): kwargs to be used in the drawing of the map.
+            show_names (bool, optional): whether or not to show the names of
+                the cities in the map. Is passed by the :meth:`show` method.
+            kwargs (dict, optional): kwargs to be used in the drawing of the
+                map.
 
         Returns:
             Nothing.
@@ -144,8 +158,11 @@ class geography():
 
         Args:
             axis_in (axis): the axis to which draw the distance matrix.
-            show_names (bool, optional): whether or not to show the names of the cities in the distance matrix. Is passed by the :meth:`show` method.
-            kwargs (dict, optional): kwargs to be used in the drawing of the distance matrix (so far, only 'annot' is used).
+            show_names (bool, optional): whether or not to show the names of
+                the cities in the distance matrix. Is passed by the
+                :meth:`show` method.
+            kwargs (dict, optional): kwargs to be used in the drawing of the
+                distance matrix (so far, only 'annot' is used).
 
         Returns:
             Nothing.
@@ -168,9 +185,16 @@ class geography():
         distance matrix in the form of a seaborn heatmap.
 
         Args:
-            show_names (bool, optional): whether or not to show the names of the cities in the representation, both in the geography map and the distance matrix. Defaults to False.
-            map_kwargs (args, optional): additional formatting options that will apply to the map axis. Not used yet.
-            dist_matrix_kwargs (args, optional): additional formatting options that will apply to the distance matrix axis. Mainly used to set annot to True or false to improve readability of the distance matrix (high cities_count geographies should be set to annot=False).
+            show_names (bool, optional): whether or not to show the names of
+                the cities in the representation, both in the geography map
+                and the distance matrix. Defaults to False.
+            map_kwargs (args, optional): additional formatting options that
+                will apply to the map axis. Not used yet.
+            dist_matrix_kwargs (args, optional): additional formatting options
+                that will apply to the distance matrix axis. Mainly used to
+                set annot to True or false to improve readability of the
+                distance matrix (high cities_count geographies should be set
+                to annot=False).
 
         Returns:
             A tuple of the 2 axis created, so that they can be updated further
@@ -199,7 +223,9 @@ class geography():
         top of the simpler `show` method of this class.
 
         Args:
-            configuration (dict of iterables): the configuration to apply. The index of the dict should be integers, and the values in the iterables should be city indexes.
+            configuration (dict of iterables): the configuration to apply.
+                The index of the dict should be integers, and the values in
+                the iterables should be city indexes.
 
         Note:
             no city index should be inside multiple pools.

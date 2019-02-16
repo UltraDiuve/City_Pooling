@@ -171,13 +171,14 @@
 <div class="viewcode-block" id="permute_array"><a class="viewcode-back" href="../index.html#geography.permute_array">[docs]</a><span class="k">def</span> <span class="nf">permute_array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Function to &quot;square permute&quot; a 2D array</span>
 
-<span class="sd">    This function&#39;s purpose is to enable distance matrices permutations. That </span>
-<span class="sd">    is, for example, permute both lines and columns of the array so as to </span>
+<span class="sd">    This function&#39;s purpose is to enable distance matrices permutations. That</span>
+<span class="sd">    is, for example, permute both lines and columns of the array so as to</span>
 <span class="sd">    reorder a distance matrix.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        arr (numpy array): the array to permute. It should be square of size n.</span>
-<span class="sd">        seq (iterable of int): a permutation of range(n) (should be of length n and contain every integer from 0 to n)</span>
+<span class="sd">        seq (iterable of int): a permutation of range(n) (should be of length n</span>
+<span class="sd">            and contain every integer from 0 to n-1)</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A copy of the original array, after the permutation has been applied.</span>
@@ -200,20 +201,25 @@
 
 <span class="sd">    - give a visual representation of that geography</span>
 <span class="sd">    - give a visual representation of the distance matrix</span>
-<span class="sd">    - give a visual representation of a configuration, a configuration being the repartition of some or all cities in pools</span>
+<span class="sd">    - give a visual representation of a configuration, a configuration being</span>
+<span class="sd">      the repartition of some or all cities in pools</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        cities_count (int): Count of cities in the geography.</span>
-<span class="sd">        coordinates (numpy array of shape(2, cities_count)): [X,Y] where X is Xs of cities and Y is Ys of cities.</span>
+<span class="sd">        coordinates (numpy array of shape(2, cities_count)): [X,Y] where X is</span>
+<span class="sd">            Xs of cities and Y is Ys of cities.</span>
 <span class="sd">        cities_names (numpy array of string): an array of strings.</span>
-<span class="sd">        dist_matrix (numpy array of shape(cities_count, cities_count)): the distance matrix of the geography.</span>
+<span class="sd">        dist_matrix (numpy array of shape(cities_count, cities_count)): the</span>
+<span class="sd">            distance matrix of the geography.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="geography.init_dist_matrix"><a class="viewcode-back" href="../index.html#geography.geography.init_dist_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">init_dist_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">dist</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Method which will initialize the distance matrix</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            func (function): a distance function which returns a positive number from a couple of cities. If unspecified, will use the euclidean distance in the plane (:func:`dist` function).</span>
+<span class="sd">            func (function): a distance function which returns a positive</span>
+<span class="sd">                number from a couple of cities. If unspecified, will use the</span>
+<span class="sd">                euclidean distance in the plane (:func:`dist` function).</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Nothing.</span>
@@ -232,9 +238,15 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            cities_count (int): the count of cities in the geography/</span>
-<span class="sd">            cities_coordinates (optional, numpy array of shape (2, cities_count)): the coordinates of the cities. If omitted, will randomly place the cities in the plane.</span>
-<span class="sd">            cities_names (optional, iterable of strings): the names of the cities. If omitted will default to an array of cities with the names &#39;City0&#39;, &#39;City1&#39;, ...</span>
-<span class="sd">            dist_func (function): the distance function to be used to populate the distance matrix. Default to :func:`dist` which is the euclidean distance</span>
+<span class="sd">            cities_coordinates (optional, array of shape (2, cities_count)):</span>
+<span class="sd">                the coordinates of the cities. If omitted, will randomly place</span>
+<span class="sd">                the cities in the plane.</span>
+<span class="sd">            cities_names (optional, iterable of strings): the names of the</span>
+<span class="sd">                cities. If omitted will default to an array of cities with the</span>
+<span class="sd">                names &#39;City0&#39;, &#39;City1&#39;, ...</span>
+<span class="sd">            dist_func (function): the distance function to be used to populate</span>
+<span class="sd">                the distance matrix. Default to :func:`dist` which is the</span>
+<span class="sd">                euclidean distance</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The initialized :class:`geography`.</span>
