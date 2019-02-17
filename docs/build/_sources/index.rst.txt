@@ -12,9 +12,10 @@ Welcome to City Pooling's documentation!
 
    City Pooling
 
-.. automodule:: geography
-   :members:
- 
+   packages
+
+    
+
 Indices and tables
 ==================
 
