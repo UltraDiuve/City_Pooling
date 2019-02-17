@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Packages documentation &mdash; City Pooling 1.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="City Pooling Notebook" href="City Pooling.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> City Pooling
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="City Pooling.html">City Pooling Notebook</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Packages documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">City Pooling</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Packages documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/packages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-geography">
+<span id="packages-documentation"></span><h1>Packages documentation<a class="headerlink" href="#module-geography" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="geography.dist">
+<code class="descclassname">geography.</code><code class="descname">dist</code><span class="sig-paren">(</span><em>city1</em>, <em>city2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns euclidean distance between 2 cities</p>
+<p>This function returns the euclidean distance between 2 cities, where each
+of the two cities is a couple of coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>city1</strong> (<em>tuple of 2 coordinates</em>) – the first city</li>
+<li><strong>city2</strong> (<em>tuple of 2 coordinates</em>) – the second city</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The euclidean distance, being a float number.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dist</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="geography.geography">
+<em class="property">class </em><code class="descclassname">geography.</code><code class="descname">geography</code><span class="sig-paren">(</span><em>cities_count</em>, <em>cities_coordinates=None</em>, <em>cities_names=None</em>, <em>dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class defining a geography (cities and distance matrix)</p>
+<p>This class implements a geography with a list of named cities with their
+associated coordinates in a plane. Helper functions enable to :</p>
+<ul class="simple">
+<li>give a visual representation of that geography</li>
+<li>give a visual representation of the distance matrix</li>
+<li>give a visual representation of a configuration, a configuration being
+the repartition of some or all cities in pools</li>
+</ul>
+<dl class="attribute">
+<dt id="geography.geography.cities_count">
+<code class="descname">cities_count</code><a class="headerlink" href="#geography.geography.cities_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count of cities in the geography.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geography.geography.coordinates">
+<code class="descname">coordinates</code><a class="headerlink" href="#geography.geography.coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>[X,Y] where X is
+Xs of cities and Y is Ys of cities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy array of shape(2, cities_count)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geography.geography.cities_names">
+<code class="descname">cities_names</code><a class="headerlink" href="#geography.geography.cities_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>an array of strings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy array of string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geography.geography.dist_matrix">
+<code class="descname">dist_matrix</code><a class="headerlink" href="#geography.geography.dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>the
+distance matrix of the geography.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">numpy array of shape(cities_count, cities_count)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geography.geography.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>cities_count</em>, <em>cities_coordinates=None</em>, <em>cities_names=None</em>, <em>dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor method of geography</p>
+<p>This method will construct a geography from parameters and initialize
+its distance matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cities_count</strong> (<em>int</em>) – the count of cities in the geography/</li>
+<li><strong>cities_coordinates</strong> (<em>optional</em><em>, </em><em>array of shape</em><em> (</em><em>2</em><em>, </em><em>cities_count</em><em>)</em>) – the coordinates of the cities. If omitted, will randomly place
+the cities in the plane.</li>
+<li><strong>cities_names</strong> (<em>optional</em><em>, </em><em>iterable of strings</em>) – the names of the
+cities. If omitted will default to an array of cities with the
+names ‘City0’, ‘City1’, …</li>
+<li><strong>dist_func</strong> (<em>function</em>) – the distance function to be used to populate
+the distance matrix. Default to <a class="reference internal" href="#geography.dist" title="geography.dist"><code class="xref py py-func docutils literal notranslate"><span class="pre">dist()</span></code></a> which is the
+euclidean distance</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The initialized <a class="reference internal" href="#module-geography" title="geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">geography</span></code></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geography.geography.draw_dist_matrix">
+<code class="descname">draw_dist_matrix</code><span class="sig-paren">(</span><em>axis_in</em>, <em>dist_matrix</em>, <em>names=None</em>, <em>show_names=False</em>, <em>kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography.draw_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.draw_dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that will populate an axis with the distance matrix</p>
+<p>This method is called through the show method and will populate the
+axis with the distance matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>axis_in</strong> (<em>axis</em>) – the axis to which draw the distance matrix.</li>
+<li><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
+the cities in the distance matrix. Is passed by the
+<a class="reference internal" href="#geography.geography.show" title="geography.geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</li>
+<li><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – kwargs to be used in the drawing of the
+distance matrix (so far, only ‘annot’ is used).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Nothing.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geography.geography.draw_map">
+<code class="descname">draw_map</code><span class="sig-paren">(</span><em>axis_in</em>, <em>show_names=False</em>, <em>kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography.draw_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.draw_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that will populate an axis with the map of the geograpy</p>
+<p>This method is called through the show method and will populate the
+axis with the map.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>axis_in</strong> (<em>axis</em>) – the axis to which draw the map of the geography.</li>
+<li><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
+the cities in the map. Is passed by the <a class="reference internal" href="#geography.geography.show" title="geography.geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</li>
+<li><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – kwargs to be used in the drawing of the
+map.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Nothing.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geography.geography.init_dist_matrix">
+<code class="descname">init_dist_matrix</code><span class="sig-paren">(</span><em>func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography.init_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.init_dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method which will initialize the distance matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>func</strong> (<em>function</em>) – a distance function which returns a positive
+number from a couple of cities. If unspecified, will use the
+euclidean distance in the plane (<a class="reference internal" href="#geography.dist" title="geography.dist"><code class="xref py py-func docutils literal notranslate"><span class="pre">dist()</span></code></a> function).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Nothing.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geography.geography.show">
+<code class="descname">show</code><span class="sig-paren">(</span><em>show_names=False</em>, <em>map_kwargs={}</em>, <em>dist_matrix_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to show a graphical representation of the geography</p>
+<p>This method will draw the geography in a plane, and give a view of the
+distance matrix in the form of a seaborn heatmap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
+the cities in the representation, both in the geography map
+and the distance matrix. Defaults to False.</li>
+<li><strong>map_kwargs</strong> (<em>args</em><em>, </em><em>optional</em>) – additional formatting options that
+will apply to the map axis. Not used yet.</li>
+<li><strong>dist_matrix_kwargs</strong> (<em>args</em><em>, </em><em>optional</em>) – additional formatting options
+that will apply to the distance matrix axis. Mainly used to
+set annot to True or false to improve readability of the
+distance matrix (high cities_count geographies should be set
+to annot=False).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A tuple of the 2 axis created, so that they can be updated further
+on.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geography.geography.show_config">
+<code class="descname">show_config</code><span class="sig-paren">(</span><em>configuration</em>, <em>show_names=False</em>, <em>map_kwargs={}</em>, <em>dist_matrix_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#geography.show_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.show_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method which will give a representation of a configuration applied</p>
+<p>This method will show the geography map with the configuration
+highlighted and a reordered distance matrix. This function is build on
+top of the simpler <cite>show</cite> method of this class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>configuration</strong> (<em>dict of iterables</em>) – the configuration to apply.
+The index of the dict should be integers, and the values in
+the iterables should be city indexes.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">no city index should be inside multiple pools.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="geography.permute_array">
+<code class="descclassname">geography.</code><code class="descname">permute_array</code><span class="sig-paren">(</span><em>arr</em>, <em>seq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#permute_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.permute_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to “square permute” a 2D array</p>
+<p>This function’s purpose is to enable distance matrices permutations. That
+is, for example, permute both lines and columns of the array so as to
+reorder a distance matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>arr</strong> (<em>numpy array</em>) – the array to permute. It should be square of size n.</li>
+<li><strong>seq</strong> (<em>iterable of int</em>) – a permutation of range(n) (should be of length n
+and contain every integer from 0 to n-1)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A copy of the original array, after the permutation has been applied.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">permute_array</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="go">[[1 3 2] [7 9 8] [4 6 5]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="City Pooling.html" class="btn btn-neutral" title="City Pooling Notebook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Pierre Massé
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
