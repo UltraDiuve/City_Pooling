@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Packages documentation" href="packages.html" />
+    <link rel="next" title="Packages" href="Packages.html" />
     <link rel="prev" title="Welcome to City Pooling’s documentation!" href="index.html" /> 
 
   
@@ -78,39 +78,34 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">City Pooling Notebook</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Introduction">Introduction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Problem-statement">Problem statement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Why-does-this-problem-seem-interesting-to-me?">Why does this problem seem interesting to me?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Disclaimer">Disclaimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Imports">Imports</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Imports">Imports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#A--Geography">A- Geography</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#A-1-What-for?">A-1 What for?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#A-2-Class-definition">A-2 Class definition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#A-3-Examples">A-3 Examples</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#1--Constructor-and-show-method">1- Constructor and <code class="docutils literal notranslate"><span class="pre">show</span></code> method</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#2--show_config-method">2- <code class="docutils literal notranslate"><span class="pre">show_config</span></code> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Geography">Geography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#What-for?">What for?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Class-definition">Class definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Constructor-and-show-method">Constructor and <code class="docutils literal notranslate"><span class="pre">show</span></code> method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show_config-method"><code class="docutils literal notranslate"><span class="pre">show_config</span></code> method</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#A-5-Random-and-optimal-solution-to-the-meshgrid-problem">A-5 Random and optimal solution to the meshgrid problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Random-and-optimal-solution-to-the-meshgrid-problem">Random and optimal solution to the meshgrid problem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#B--Solver-package">B- Solver package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#B-1-What-for?">B-1 What for?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Solver-package">Solver package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#What-for?">What for?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Hic-sunt-dracones">Hic sunt dracones</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Analyse-de-la-combinatoire">Analyse de la combinatoire</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Cas-de-la-factorielle">Cas de la factorielle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Work-in-progress">Work in progress</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="packages.html">Packages documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Packages.html">Packages</a></li>
 </ul>
 
             
@@ -407,7 +402,7 @@ div.rendered_html tbody tr:hover {
 <p>That is where he sometimes is faced with quite a challenge: dividing dozens of teams from various cities into smaller groups, which will then compete in round-robin tournaments. The problem is that he must try to be as efficient as possible when it comes to the cost of travel for each team. The cost of a scenario may be something as simple as the sum of total distance traveled by the teams, but it can also get far more complicated when trying to add some fairness to it: - trying to minimze the
 distance run by the team with the greatest one - adding other criteria to the cost function: adding the standard deviation of total distance for each team to the overall cost - putting some weight over the “richest” teams by considering the cost of distance being smaller for them…</p>
 <p>The simplest case would be minimizing total distance run by all teams, and after analysis: given points on a plane, how do I split them in same size groups so that total distance between points in the same group is minimized?</p>
-<p><img alt="title" src="img/16_cities.png?1" /></p>
+<p><img alt="title" src="_images/16_cities.png" /></p>
 <center><p>Example of 16 cities to split into 4 pools of 4</p>
 </center></div>
 <div class="section" id="Why-does-this-problem-seem-interesting-to-me?">
@@ -419,9 +414,8 @@ work on real life data… - last but not least, when I first got to see some sol
 <h3>Disclaimer<a class="headerlink" href="#Disclaimer" title="Permalink to this headline">¶</a></h3>
 <p>I am definitely not a professional developper (yet?), and my sometimes cumbersome logic or alien syntax might make seasoned readers cringe. I definitely am open to any suggestion as to improve the following.</p>
 </div>
-</div>
 <div class="section" id="Imports">
-<h2>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h2>
+<h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h3>
 <p>The below imports are used in this notebook (yet this would require some cleansing as some of them are not required here anymore).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -459,30 +453,29 @@ work on real life data… - last but not least, when I first got to see some sol
 <span class="k">def</span> <span class="nf">reload_all</span><span class="p">():</span>
     <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span>
     <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">scorer</span><span class="p">)</span>
-
-<span class="c1"># just a test</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="A--Geography">
-<h2>A- Geography<a class="headerlink" href="#A--Geography" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="A-1-What-for?">
-<h3>A-1 What for?<a class="headerlink" href="#A-1-What-for?" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="Geography">
+<h2>Geography<a class="headerlink" href="#Geography" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="What-for?">
+<h3>What for?<a class="headerlink" href="#What-for?" title="Permalink to this headline">¶</a></h3>
 <p>First of all, I will define a class that will hold the distance cost between cities. For the first run of optimization, I will work with cost between two cities being the distance between them. That will enable me to visually check whether my code is possibly giving acurate results or being completely dumb.</p>
 <p>I want that class to allow me to - create a map of cities from coordinates, or randomly set one up - assign them names - compute the distance matrix between every couple of cities - show a visual representation of the map - apply and give a visual representation of a configuration - compute the cost of a configuration</p>
 <p>This class will then be extended as to get real data, for example from the Google Maps APIs.</p>
 </div>
-<div class="section" id="A-2-Class-definition">
-<h3>A-2 Class definition<a class="headerlink" href="#A-2-Class-definition" title="Permalink to this headline">¶</a></h3>
-<p>Class definition is all set up in the //geography//geography module.</p>
+<div class="section" id="Class-definition">
+<h3>Class definition<a class="headerlink" href="#Class-definition" title="Permalink to this headline">¶</a></h3>
+<p>Class definition is all set up in the <code class="docutils literal notranslate"><span class="pre">geography.geography</span></code> module.</p>
 </div>
-<div class="section" id="A-3-Examples">
-<h3>A-3 Examples<a class="headerlink" href="#A-3-Examples" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="1--Constructor-and-show-method">
-<h4>1- Constructor and <code class="docutils literal notranslate"><span class="pre">show</span></code> method<a class="headerlink" href="#1--Constructor-and-show-method" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="1-1-Random-constructor">
-<h5>1-1 Random constructor<a class="headerlink" href="#1-1-Random-constructor" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="Examples">
+<h3>Examples<a class="headerlink" href="#Examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Constructor-and-show-method">
+<h4>Constructor and <code class="docutils literal notranslate"><span class="pre">show</span></code> method<a class="headerlink" href="#Constructor-and-show-method" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="Random-constructor">
+<h5>Random constructor<a class="headerlink" href="#Random-constructor" title="Permalink to this headline">¶</a></h5>
 <p>Constructor without parameters will just create a random map of n cities with default names, and compute the distance matrix with the “natural” euclidean distance. Explaination of the distance matrix is provided in the second example.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -512,9 +505,9 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 </div>
 </div>
-<div class="section" id="1-2-Forced-coordinates-constructor">
-<h5>1-2 Forced coordinates constructor<a class="headerlink" href="#1-2-Forced-coordinates-constructor" title="Permalink to this headline">¶</a></h5>
-<p>It is also possible to force cities coordinates with a numpy array of shape (n, 2) or the names of the cities with an iterable of names. Here, I will create a meshgrid of 16 cities, with a unit space of 1 between cities.</p>
+<div class="section" id="Forced-coordinates-constructor">
+<h5>Forced coordinates constructor<a class="headerlink" href="#Forced-coordinates-constructor" title="Permalink to this headline">¶</a></h5>
+<p>It is also possible to force cities coordinates with a numpy array of shape (2, n) or the names of the cities with an iterable of names. Here, I will create a meshgrid of 16 cities, with a unit space of 1 between cities.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -568,11 +561,18 @@ work on real life data… - last but not least, when I first got to see some sol
 <p>I could have limited the distance matrix to its superior half, but I might encounter cases where going form a to b is longer (or more costly) than getting from b to a.</p>
 </div>
 </div>
-<div class="section" id="2--show_config-method">
-<h4>2- <code class="docutils literal notranslate"><span class="pre">show_config</span></code> method<a class="headerlink" href="#2--show_config-method" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="show_config-method">
+<h4><code class="docutils literal notranslate"><span class="pre">show_config</span></code> method<a class="headerlink" href="#show_config-method" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">show_config</span></code> method enables to apply a configuration to a geography, and display it.</p>
-<p>A configuration is a dict : - with integer keys - with iterables of city indexes as values</p>
-<p>As per the problem definition, a city index should only appear in a single pool, and only once in that pool, yet no restriction has been set in the source code. ##### 2-1 <code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as set A way to modelize a pool would be a python set, as it enforces the fact that inside a pool, a city may only appear once. Yet it has a serious drawback.</p>
+<p>A configuration is a dict :</p>
+<ul class="simple">
+<li>with integer keys</li>
+<li>with iterables of city indexes as values</li>
+</ul>
+<p>As per the problem definition, a city index should only appear in a single pool, and only once in that pool, yet no restriction has been set in the source code.</p>
+<div class="section" id="show_config-with-pools-as-set">
+<h5><code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as set<a class="headerlink" href="#show_config-with-pools-as-set" title="Permalink to this headline">¶</a></h5>
+<p>A way to modelize a pool would be a python set, as it enforces the fact that inside a pool, a city may only appear once. Yet it has a serious drawback.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -590,9 +590,12 @@ work on real life data… - last but not least, when I first got to see some sol
 <img alt="_images/City_Pooling_12_0.png" src="_images/City_Pooling_12_0.png" />
 </div>
 </div>
-<p>The first cities in this example are:</p>
-<p><code class="docutils literal notranslate"><span class="pre">0:</span> <span class="pre">Paris,</span> <span class="pre">1:</span> <span class="pre">Montpellier,</span> <span class="pre">2:</span> <span class="pre">Marseille,</span></code> …</p>
-<p>Note that python sets are unordered, this is why in the distance matrix in the above example inside a pool no order is applied. First pool being <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">:</span> <span class="pre">set([2,6,1])</span></code> should have resulted in <code class="docutils literal notranslate"><span class="pre">Marseille,</span> <span class="pre">Rennes,</span> <span class="pre">Montpellier</span></code>. ##### 2-2 <code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as lists If I want to maintain an order inside each pool - which I will want to do later on - I need to use lists (see just below).</p>
+<p>The first cities in the first set were <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">:</span> <span class="pre">set([2,6,1])</span></code> and therefore first pool in the reordered distance matrix should have been <code class="docutils literal notranslate"><span class="pre">2:</span> <span class="pre">Marseille,</span> <span class="pre">6:</span> <span class="pre">Rennes,</span> <span class="pre">1:</span> <span class="pre">Montpellier</span></code>.</p>
+<p>Note that python sets are unordered, this is why in the distance matrix in the above example inside a pool no order is applied and results in <code class="docutils literal notranslate"><span class="pre">1:</span> <span class="pre">Montpellier,</span> <span class="pre">2:</span> <span class="pre">Marseille,</span> <span class="pre">6:</span> <span class="pre">Rennes</span></code></p>
+</div>
+<div class="section" id="show_config-with-pools-as-lists">
+<h5><code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as lists<a class="headerlink" href="#show_config-with-pools-as-lists" title="Permalink to this headline">¶</a></h5>
+<p>If I want to maintain an order inside each pool - which I will want to do later on - I need to use lists (see just below).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -611,14 +614,15 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 </div>
 <p>Here, the order inside each pool has been kept.</p>
-<div class="section" id="2-3-Why-choosing-configuration-to-be-a-dict-rather-than-another-iterable?">
-<h5>2-3 Why choosing configuration to be a dict rather than another iterable?<a class="headerlink" href="#2-3-Why-choosing-configuration-to-be-a-dict-rather-than-another-iterable?" title="Permalink to this headline">¶</a></h5>
+</div>
+<div class="section" id="Why-choosing-configuration-to-be-a-dict-rather-than-another-iterable?">
+<h5>Why choosing configuration to be a dict rather than another iterable?<a class="headerlink" href="#Why-choosing-configuration-to-be-a-dict-rather-than-another-iterable?" title="Permalink to this headline">¶</a></h5>
 <p>It might seem weird to choose to use a dict rather than a list for a configuration. But in future works, if I try to work on pools which are not the same size, I will need to build an enumeration system (and therefore need to be able to get to a pool with an integer index).</p>
 </div>
 </div>
 </div>
-<div class="section" id="A-5-Random-and-optimal-solution-to-the-meshgrid-problem">
-<h3>A-5 Random and optimal solution to the meshgrid problem<a class="headerlink" href="#A-5-Random-and-optimal-solution-to-the-meshgrid-problem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Random-and-optimal-solution-to-the-meshgrid-problem">
+<h3>Random and optimal solution to the meshgrid problem<a class="headerlink" href="#Random-and-optimal-solution-to-the-meshgrid-problem" title="Permalink to this headline">¶</a></h3>
 <p>Let’s now try to compare the (trivial) solution of this problem (a 4x4 grid is not much of a challenge!) and a random one. For this example, I will try to minimize the total distance traveled by all teams.</p>
 <p>First, I need to create a random configuration.</p>
 <div class="nbinput docutils container">
@@ -682,10 +686,10 @@ work on real life data… - last but not least, when I first got to see some sol
 <p>One nice thing to notice is that finding a solution to the problem consists in permuting the cities in pools so that the lightest cells in the distance matrix get closest to the diagonal.</p>
 </div>
 </div>
-<div class="section" id="B--Solver-package">
-<h2>B- Solver package<a class="headerlink" href="#B--Solver-package" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="B-1-What-for?">
-<h3>B-1 What for?<a class="headerlink" href="#B-1-What-for?" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Solver-package">
+<h2>Solver package<a class="headerlink" href="#Solver-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="What-for?">
+<h3>What for?<a class="headerlink" href="#What-for?" title="Permalink to this headline">¶</a></h3>
 <p>Obviously, to solve the problem! That means: find the configuration that minimize my criterion cost.</p>
 <p>The solver class will have 2 subpackages: - a <code class="docutils literal notranslate"><span class="pre">scorer</span></code> package, that will provide costing functions and compute the cost of a configuration applied to a geography - a <code class="docutils literal notranslate"><span class="pre">solver</span></code> package, that will provide various algorithms to find a globally or locally optimal solution to the problem</p>
 <div class="nbinput docutils container">
@@ -707,14 +711,9 @@ youhou !
 </div>
 </div>
 </div>
-<div class="section" id="Hic-sunt-dracones">
-<h2>Hic sunt dracones<a class="headerlink" href="#Hic-sunt-dracones" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Work-in-progress">
+<h2>Work in progress<a class="headerlink" href="#Work-in-progress" title="Permalink to this headline">¶</a></h2>
 <p>Below content is just for experimentation.</p>
-</div>
-<div class="section" id="Analyse-de-la-combinatoire">
-<h2>Analyse de la combinatoire<a class="headerlink" href="#Analyse-de-la-combinatoire" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Cas-de-la-factorielle">
-<h3>Cas de la factorielle<a class="headerlink" href="#Cas-de-la-factorielle" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
@@ -785,7 +784,7 @@ youhou !
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_26_1.png" src="_images/City_Pooling_26_1.png" />
+<img alt="_images/City_Pooling_25_1.png" src="_images/City_Pooling_25_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1060,14 +1059,14 @@ pool
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_34_1.png" src="_images/City_Pooling_34_1.png" />
+<img alt="_images/City_Pooling_33_1.png" src="_images/City_Pooling_33_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_34_2.png" src="_images/City_Pooling_34_2.png" />
+<img alt="_images/City_Pooling_33_2.png" src="_images/City_Pooling_33_2.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1146,43 +1145,42 @@ pool
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_36_1.png" src="_images/City_Pooling_36_1.png" />
+<img alt="_images/City_Pooling_35_1.png" src="_images/City_Pooling_35_1.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_36_2.png" src="_images/City_Pooling_36_2.png" />
+<img alt="_images/City_Pooling_35_2.png" src="_images/City_Pooling_35_2.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_36_3.png" src="_images/City_Pooling_36_3.png" />
+<img alt="_images/City_Pooling_35_3.png" src="_images/City_Pooling_35_3.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_36_4.png" src="_images/City_Pooling_36_4.png" />
+<img alt="_images/City_Pooling_35_4.png" src="_images/City_Pooling_35_4.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_36_5.png" src="_images/City_Pooling_36_5.png" />
+<img alt="_images/City_Pooling_35_5.png" src="_images/City_Pooling_35_5.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/City_Pooling_36_6.png" src="_images/City_Pooling_36_6.png" />
-</div>
+<img alt="_images/City_Pooling_35_6.png" src="_images/City_Pooling_35_6.png" />
 </div>
 </div>
 </div>
@@ -1196,7 +1194,7 @@ pool
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="packages.html" class="btn btn-neutral float-right" title="Packages documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Packages.html" class="btn btn-neutral float-right" title="Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to City Pooling’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

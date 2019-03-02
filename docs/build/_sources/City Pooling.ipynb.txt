@@ -19,7 +19,7 @@
     "\n",
     "\n",
     "\n",
-    "![title](img/16_cities.png?1)\n",
+    "![title](img/16_cities.png)\n",
     "<i><center>Example of 16 cities to split into 4 pools of 4</center></i>\n",
     "\n",
     "\n",
@@ -37,7 +37,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Imports\n",
+    "### Imports\n",
     "The below imports are used in this notebook (yet this would require some cleansing as some of them are not required here anymore)."
    ]
   },
@@ -83,19 +83,16 @@
     "# cell to reload modules\n",
     "def reload_all():\n",
     "    importlib.reload(geo)\n",
-    "    importlib.reload(scorer)\n",
-    "\n",
-    "# just a test\n",
-    "    "
+    "    importlib.reload(scorer)   "
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## A- Geography\n",
+    "## Geography\n",
     "\n",
-    "### A-1 What for?\n",
+    "### What for?\n",
     "First of all, I will define a class that will hold the distance cost between cities. For the first run of optimization, I will work with cost between two cities being the distance between them. That will enable me to visually check whether my code is possibly giving acurate results or being completely dumb.\n",
     "\n",
     "I want that class to allow me to \n",
@@ -108,18 +105,18 @@
     "\n",
     "This class will then be extended as to get real data, for example from the Google Maps APIs.\n",
     "\n",
-    "### A-2 Class definition\n",
+    "### Class definition\n",
     "\n",
-    "Class definition is all set up in the //geography//geography module."
+    "Class definition is all set up in the `geography.geography` module."
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### A-3 Examples\n",
-    "#### 1- Constructor and `show` method\n",
-    "##### 1-1 Random constructor \n",
+    "### Examples\n",
+    "#### Constructor and `show` method\n",
+    "##### Random constructor \n",
     "Constructor without parameters will just create a random map of n cities with default names, and compute the distance matrix with the \"natural\" euclidean distance.\n",
     "Explaination of the distance matrix is provided in the second example."
    ]
@@ -164,8 +161,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "##### 1-2 Forced coordinates constructor\n",
-    "It is also possible to force cities coordinates with a numpy array of shape (n, 2) or the names of the cities with\n",
+    "##### Forced coordinates constructor\n",
+    "It is also possible to force cities coordinates with a numpy array of shape (2, n) or the names of the cities with\n",
     "an iterable of names.\n",
     "Here, I will create a meshgrid of 16 cities, with a unit space of 1 between cities."
    ]
@@ -241,15 +238,17 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "#### 2- `show_config` method\n",
+    "#### `show_config` method\n",
     "The `show_config` method enables to apply a configuration to a geography, and display it.\n",
     "\n",
     "A configuration is a dict :\n",
-    "- with integer keys\n",
-    "- with iterables of city indexes as values\n",
+    "\n",
+    "   - with integer keys\n",
+    "   - with iterables of city indexes as values\n",
     "\n",
     "As per the problem definition, a city index should only appear in a single pool, and only once in that pool, yet no restriction has been set in the source code.\n",
-    "##### 2-1 `show_config` with pools as set\n",
+    "\n",
+    "##### `show_config` with pools as set\n",
     "A way to modelize a pool would be a python set, as it enforces the fact that inside a pool, a city may only appear once. Yet it has a serious drawback."
    ]
   },
@@ -280,12 +279,11 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "The first cities in this example are:\n",
+    "The first cities in the first set were `0 : set([2,6,1])` and therefore first pool in the reordered distance matrix should have been `2: Marseille, 6: Rennes, 1: Montpellier`.\n",
     "\n",
-    "`0: Paris, 1: Montpellier, 2: Marseille,` ...\n",
+    "Note that python sets are unordered, this is why in the distance matrix in the above example inside a pool no order is applied and results in `1: Montpellier, 2: Marseille, 6: Rennes`\n",
     "\n",
-    "Note that python sets are unordered, this is why in the distance matrix in the above example inside a pool no order is applied. First pool being `0 : set([2,6,1])` should have resulted in `Marseille, Rennes, Montpellier`.\n",
-    "##### 2-2 `show_config` with pools as lists\n",
+    "##### `show_config` with pools as lists\n",
     "If I want to maintain an order inside each pool - which I will want to do later on - I need to use lists (see just below)."
    ]
   },
@@ -318,7 +316,7 @@
    "source": [
     "Here, the order inside each pool has been kept.\n",
     "\n",
-    "##### 2-3 Why choosing configuration to be a dict rather than another iterable?\n",
+    "##### Why choosing configuration to be a dict rather than another iterable?\n",
     "It might seem weird to choose to use a dict rather than a list for a configuration. But in future works, if I try to work on pools which are not the same size, I will need to build an enumeration system (and therefore need to be able to get to a pool with an integer index)."
    ]
   },
@@ -326,7 +324,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### A-5 Random and optimal solution to the meshgrid problem\n",
+    "### Random and optimal solution to the meshgrid problem\n",
     "\n",
     "Let's now try to compare the (trivial) solution of this problem (a 4x4 grid is not much of a challenge!) and a random one. For this example, I will try to minimize the total distance traveled by all teams.\n",
     "\n",
@@ -414,8 +412,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## B- Solver package\n",
-    "### B-1 What for?\n",
+    "## Solver package\n",
+    "### What for?\n",
     "Obviously, to solve the problem! That means: find the configuration that minimize my criterion cost.\n",
     "\n",
     "The solver class will have 2 subpackages:\n",
@@ -444,16 +442,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Hic sunt dracones\n",
+    "## Work in progress\n",
+    "\n",
     "Below content is just for experimentation."
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## Analyse de la combinatoire\n",
-    "### Cas de la factorielle"
    ]
   },
   {
