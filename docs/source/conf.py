@@ -14,7 +14,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../geography/'))
+sys.path.insert(0, os.path.abspath('../../src/geography/'))
 sys.path.insert(1, os.path.abspath('../../'))
 sys.path.insert(2, os.path.abspath('.'))
 
