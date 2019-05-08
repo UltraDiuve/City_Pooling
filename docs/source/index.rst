@@ -24,6 +24,8 @@ Tools used so far to build it are:
 * Anaconda to manage all the packages that orbit around Python
 * Obviously, git and github to manage and host source code
 * Sphinx to create this documentation, hosted on github pages
+* Flake8 for linting
+* pytest for automated unit testing
 
 
 Project content

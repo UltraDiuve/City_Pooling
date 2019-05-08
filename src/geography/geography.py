@@ -109,8 +109,15 @@ class geography():
             """
 
         self.cities_count = cities_count
-        self.coordinates = np.random.rand(2, cities_count) if cities_coordinates is None else cities_coordinates
-        self.names = np.array([("City " + str(i)) for i in range(cities_count)]) if cities_names is None else np.array(cities_names)
+        if cities_coordinates is None:
+            self.coordinates = np.random.rand(2, cities_count)
+        else:
+            self.coordinates = cities_coordinates
+        if cities_names is None:
+            self.names = np.array([("City " + str(i))
+                                   for i in range(cities_count)])
+        else:
+            self.names = np.array(cities_names)
 
         # initialize distance matrix
         self.init_dist_matrix(func=dist_func)
