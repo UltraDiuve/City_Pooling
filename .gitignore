@@ -1,5 +1,8 @@
 .coverage
-/.pytest_cache
+/.pytest_cache/
 *.log
 *.pyc
 **/__pycache__
+**/docs/build/.doctrees/
+**/docs/build/.ipynb_checkpoints
+*ipynb_checkpoint*
