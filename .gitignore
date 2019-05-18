@@ -5,3 +5,5 @@
 **/__pycache__
 **/docs/build/.doctrees
 *ipynb_checkpoints*
+**/docs/build/doctrees
+*.buildinfo
