@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Build and Deploy &mdash; City Pooling 1.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="geography package" href="geography.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> City Pooling
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="City Pooling.html">City Pooling Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Packages.html">Packages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Build and Deploy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-steps-lint-test-and-make-documentation">Build steps: lint, test and make documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linting-running-flake8">Linting: running Flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-testing-running-pytest">Unit testing: running Pytest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">City Pooling</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Build and Deploy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Build and deploy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="build-and-deploy">
+<h1>Build and Deploy<a class="headerlink" href="#build-and-deploy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This project does not consist in an application that is avalaible for end users,
+but rather the GitHub pages in which its presentation is stored:</p>
+<ul class="simple">
+<li>The aim of the Deploy step is to push the new version of the documentation online.</li>
+<li>The aim of the Build step is to check that everything is ok and produce the new
+version of the documentation.</li>
+</ul>
+</div>
+<div class="section" id="build-steps-lint-test-and-make-documentation">
+<h2>Build steps: lint, test and make documentation<a class="headerlink" href="#build-steps-lint-test-and-make-documentation" title="Permalink to this headline">¶</a></h2>
+<p>As the project is exclusively written in Python, no build per se is necessary for
+the code part. However, as it is good practice, some checks are mandatory before
+actually build the new version of the docs.</p>
+<p>The real Build is when the Sphinx documentation is produced from .rst files,
+Jupyter Notebook and .py files.</p>
+<div class="section" id="linting-running-flake8">
+<h3>Linting: running Flake8<a class="headerlink" href="#linting-running-flake8" title="Permalink to this headline">¶</a></h3>
+<p>The linter used on this project is <a class="reference external" href="http://flake8.pycqa.org/en/latest/">Flake8</a>.</p>
+<p>The command to run it a simple one. Just open a command prompt, navigate
+to project folder root and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="o">--</span><span class="n">count</span>
+</pre></div>
+</div>
+<p>No warning or error should arise, a single <cite>0</cite> should be printed out.</p>
+</div>
+<div class="section" id="unit-testing-running-pytest">
+<h3>Unit testing: running Pytest<a class="headerlink" href="#unit-testing-running-pytest" title="Permalink to this headline">¶</a></h3>
+<p>Tests have to be written and run prior to any deployment to production. The
+package used on this project is <a class="reference external" href="https://docs.pytest.org/en/latest/">Pytest</a>.</p>
+<p>There is a little boilerplate I had to come to to make it work.</p>
+<p>The folder structure of this project is the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>City pooling
+├── src                     # src is where source code for packages is
+│   ├── geography
+│   │   ├── __init__.py
+│   │   └── geography.py
+│   ├── solver
+│   │   ├── __init__.py
+│   │   └── ...
+│   └── ...
+├── test                    # tests are outside the src directory
+│   └── test_geography.py
+│   └── ...
+└── docs                    # all Sphinx files
+    ├── build               # result of Sphinx build (documentation)
+    │   ├── index.html
+    │   ├── geography.html
+    │   └── ...
+    └── source              # where Jupyter notebook and .rst files are
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="geography.html" class="btn btn-neutral" title="geography package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Pierre Massé
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
