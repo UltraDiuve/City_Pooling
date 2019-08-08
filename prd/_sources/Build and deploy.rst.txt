@@ -126,4 +126,4 @@ It should run without showing errors, like this nice output:
    :alt: a Sphinx build success message
    :align: center
 
-Test.4
+Test.5
