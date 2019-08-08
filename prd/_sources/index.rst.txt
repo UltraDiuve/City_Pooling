@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-========================================
+****************************************
 Welcome to City Pooling's documentation!
-========================================
+****************************************
 
 A brief introduction
-====================
+####################
 
 This github Pages is intended to *publish* the current state of my City Pooling
 personnal project.
@@ -29,7 +29,7 @@ Tools used so far to build it are:
 
 
 Project content
-====================
+####################
 
 .. toctree::
    :maxdepth: 2
@@ -40,7 +40,7 @@ Project content
     
 
 Indices and tables
-==================
+####################
 
 * :ref:`genindex`
 * :ref:`modindex`
