@@ -125,3 +125,5 @@ It should run without showing errors, like this nice output:
    :scale: 100%
    :alt: a Sphinx build success message
    :align: center
+
+Test.4
