@@ -17,33 +17,35 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="geography package" href="geography.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -88,7 +90,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#making-the-docs-running-sphinx">Making the docs: running Sphinx</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#deploy-steps-duplicate-docs-to-prd-and-push">Deploy steps: duplicate docs to prd/ and push</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-steps-duplicate-docs-to-prd-and-push">Deploy steps: duplicate docs to prd/ and push</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#duplicate-built-docs-to-prd-folder">Duplicate built docs to <cite>prd/</cite> folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#push-prd-folder-to-github">Push <cite>prd/</cite> folder to GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#automating-these-steps">Automating these steps</a></li>
 </ul>
 </li>
 </ul>
@@ -186,9 +193,9 @@
 <p>This project does not consist in an application that is avalaible for end users,
 but rather the GitHub pages in which its presentation is stored:</p>
 <ul class="simple">
-<li>The aim of the Deploy step is to push the new version of the documentation online.</li>
-<li>The aim of the Build step is to check that everything is ok and produce the new
-version of the documentation.</li>
+<li><p>The aim of the Deploy step is to push the new version of the documentation online.</p></li>
+<li><p>The aim of the Build step is to check that everything is ok and produce the new
+version of the documentation.</p></li>
 </ul>
 <p>The folder structure of this project is the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>City pooling
@@ -241,7 +248,10 @@ Jupyter Notebook and .py files.</p>
 <p>The linter used on this project is <a class="reference external" href="http://flake8.pycqa.org/en/latest/">Flake8</a>.</p>
 <p>The command to run it a simple one. Just open a command prompt, navigate
 to project folder root and run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="o">--</span><span class="n">count</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Linting: running flake8</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Running flake8. Error count:
+flake8 --count
 </pre></div>
 </div>
 <p>No warning or error should arise, a single <cite>0</cite> should be printed out.</p>
@@ -250,7 +260,7 @@ to project folder root and run:</p>
 <h3>Unit testing: running Pytest<a class="headerlink" href="#unit-testing-running-pytest" title="Permalink to this headline">¶</a></h3>
 <p>Tests have to be written and run prior to any deployment to production. The
 package used on this project is <a class="reference external" href="https://docs.pytest.org/en/latest/">Pytest</a>.</p>
-<p>There is a little boilerplate I had to come to to make it work.</p>
+<p>There is a small hack I had to come to to make it work.</p>
 <p>As the modules to be tested are in the <cite>src</cite> folder, the beginning of the
 test files looks like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -267,7 +277,11 @@ as <cite>src</cite> is not in the Python path.</p>
 <a class="reference internal image-reference" href="_images/ModuleNotFound_pytest_error.png"><img alt="a pytest module not found exception error message" class="align-center" src="_images/ModuleNotFound_pytest_error.png" style="width: 100.0%; height: 339.0px;" /></a>
 <p>One way to work around this problem is to
 simply use the following command line from the project root directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Testing: running pytest</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Running pytest...
+<span class="k">echo</span>.
+python -m pytest --cov
 </pre></div>
 </div>
 <p>The <cite>-m</cite> option adds the current to the Python path, and during test discovery
@@ -278,9 +292,12 @@ pytest is then able to import sources packages.</p>
 <h3>Making the docs: running Sphinx<a class="headerlink" href="#making-the-docs-running-sphinx" title="Permalink to this headline">¶</a></h3>
 <p>Sphinx comes in with a handy <cite>make.bat</cite> file which enables to smoothly build
 all the documentation for the project.</p>
-<p>It can be run by simply using the following command, after having navigated to
-the <cite>docs</cite> folder:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+<p>It can be run by simply using the <cite>make html</cite> command, from the <cite>docs</cite> folder:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Building the docs: running Sphinx</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Running Sphinx
+<span class="k">echo</span>.
+docs\make html
 </pre></div>
 </div>
 <p>It should run without showing errors, like this nice output:</p>
@@ -288,19 +305,77 @@ the <cite>docs</cite> folder:</p>
 <p>After this step, a new version of the documentation is avalaible in the
 <cite>docs/build</cite> folder.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Building the docs has no effect on the avalaible content on GitHub pages.
+<p class="admonition-title">Note</p>
+<p>Building the docs has no effect on the avalaible content on GitHub pages.
 Deploy step is required.</p>
 </div>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Built documentation should always be checked prior to being deployed.</p>
+<p class="admonition-title">Caution</p>
+<p>Built documentation should always be checked prior to being deployed.</p>
 </div>
 </div>
 </div>
 <hr class="docutils" />
 <div class="section" id="deploy-steps-duplicate-docs-to-prd-and-push">
 <h2>Deploy steps: duplicate docs to prd/ and push<a class="headerlink" href="#deploy-steps-duplicate-docs-to-prd-and-push" title="Permalink to this headline">¶</a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Git Working tree should be clean before deploying, as any stage change will be
+commited upon deployment.</p>
+</div>
+<div class="section" id="duplicate-built-docs-to-prd-folder">
+<h3>Duplicate built docs to <cite>prd/</cite> folder<a class="headerlink" href="#duplicate-built-docs-to-prd-folder" title="Permalink to this headline">¶</a></h3>
+<p>First step is to duplicate the whole content of <cite>docs/build/</cite> folder to <cite>prd/</cite> folder.
+This is done by simply using the <cite>robocopy</cite> tool from Windows after having deleted
+the <cite>prd/</cite> folder content:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> Replacing prd/ folder content
+<span class="k">echo</span>.
+
+<span class="c1">REM Delete prd\ folder and content</span>
+<span class="k">rd</span> /s /q .\prd\
+
+<span class="c1">REM Copy the content of docs\build\ to a brand new prd\ folder</span>
+robocopy .\docs\build\ .\prd\ /E
+</pre></div>
+</div>
+</div>
+<div class="section" id="push-prd-folder-to-github">
+<h3>Push <cite>prd/</cite> folder to GitHub<a class="headerlink" href="#push-prd-folder-to-github" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>prd/</cite> folder has been added to the root <cite>.gitignore</cite> file of this project so as to
+avoid unintentionnaly deploying to production unchecked docs.</p>
+<p>Therefore, to add the <cite>prd/</cite> folder to the Git index, the following commands are used:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Force adding of prd\ folder to git index</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Adding prd/ folder to git index
+<span class="k">echo</span>.
+git add --force prd/
+
+<span class="c1">REM Commit that addition</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Committing changes
+<span class="k">echo</span>.
+git commit -m <span class="s2">&quot;Automated deployment of prd&quot;</span>
+
+<span class="c1">REM Push this commit to remote repository</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Pushing to remote repository
+<span class="k">echo</span>.
+git push origin master
+git status
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="automating-these-steps">
+<h2>Automating these steps<a class="headerlink" href="#automating-these-steps" title="Permalink to this headline">¶</a></h2>
+<p>Build and Deploy steps have been automated into 2 small <cite>.bat</cite> files, that are
+stored directly in the root folder of this project.</p>
+<p>It is possible to run these steps by simply calling <cite>Build</cite> or <cite>Deploy</cite> from
+a command line.</p>
+<p>Example of <cite>Build</cite> command output:</p>
+<a class="reference internal image-reference" href="_images/Build.bat.PNG"><img alt="a command prompt showing the result of Build command" class="align-center" src="_images/Build.bat.PNG" style="width: 100.0%; height: 296.0px;" /></a>
+<p>Example of <cite>Deploy</cite> command output:</p>
 </div>
 </div>
 
@@ -313,7 +388,7 @@ Deploy step is required.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="geography.html" class="btn btn-neutral" title="geography package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="geography.html" class="btn btn-neutral float-left" title="geography package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -339,25 +414,16 @@ Deploy step is required.</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
