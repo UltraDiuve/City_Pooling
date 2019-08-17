@@ -245,3 +245,8 @@ Example of `Build` command output:
 
 Example of `Deploy` command output:
 
+.. image:: img/Deploy.bat.PNG
+   :width: 100%   
+   :scale: 100%
+   :alt: a command prompt showing the result of Deploy command
+   :align: center
