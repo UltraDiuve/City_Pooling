@@ -72,8 +72,12 @@ The linter used on this project is `Flake8 <http://flake8.pycqa.org/en/latest/>`
 
 The command to run it a simple one. Just open a command prompt, navigate 
 to project folder root and run:
-::
 
+.. code-block:: bat
+
+    REM Linting: running flake8
+    echo.
+    echo Running flake8. Error count:
     flake8 --count
 
 No warning or error should arise, a single `0` should be printed out.
@@ -84,7 +88,7 @@ Unit testing: running Pytest
 Tests have to be written and run prior to any deployment to production. The 
 package used on this project is `Pytest <https://docs.pytest.org/en/latest/>`_.
 
-There is a little boilerplate I had to come to to make it work.
+There is a small hack I had to come to to make it work.
 
 As the modules to be tested are in the `src` folder, the beginning of the 
 test files looks like:
@@ -110,8 +114,13 @@ as `src` is not in the Python path.
 
 One way to work around this problem is to 
 simply use the following command line from the project root directory:
-::
 
+.. code-block:: bat
+
+    REM Testing: running pytest
+    echo.
+    echo Running pytest...
+    echo.
     python -m pytest --cov
 
 The `-m` option adds the current to the Python path, and during test discovery 
@@ -129,11 +138,15 @@ Making the docs: running Sphinx
 Sphinx comes in with a handy `make.bat` file which enables to smoothly build 
 all the documentation for the project.
 
-It can be run by simply using the following command, after having navigated to 
-the `docs` folder:
-::
+It can be run by simply using the `make html` command, from the `docs` folder:
 
-    make html
+.. code-block:: bat
+
+    REM Building the docs: running Sphinx
+    echo.
+    echo Running Sphinx
+    echo.
+    docs\make html
 
 It should run without showing errors, like this nice output:
 
@@ -158,3 +171,82 @@ _______________________________________________________________________________
 *********************************************
 Deploy steps: duplicate docs to prd/ and push
 *********************************************
+
+.. caution::
+    Git Working tree should be clean before deploying, as any stage change will be
+    commited upon deployment.
+
+Duplicate built docs to `prd/` folder
+=====================================
+
+First step is to duplicate the whole content of `docs/build/` folder to `prd/` folder.
+This is done by simply using the `robocopy` tool from Windows after having deleted
+the `prd/` folder content:
+
+.. code-block:: bat
+
+    echo Replacing prd/ folder content
+    echo.
+
+    REM Delete prd\ folder and content
+    rd /s /q .\prd\
+
+    REM Copy the content of docs\build\ to a brand new prd\ folder
+    robocopy .\docs\build\ .\prd\ /E
+
+Push `prd/` folder to GitHub
+============================
+
+The `prd/` folder has been added to the root `.gitignore` file of this project so as to 
+avoid unintentionnaly deploying to production unchecked docs.
+
+Therefore, to add the `prd/` folder to the Git index, the following commands are used:
+
+.. code-block:: bat
+
+    REM Force adding of prd\ folder to git index
+    echo.
+    echo Adding prd/ folder to git index 
+    echo.
+    git add --force prd/
+
+    REM Commit that addition
+    echo.
+    echo Committing changes
+    echo.
+    git commit -m "Automated deployment of prd"
+
+    REM Push this commit to remote repository
+    echo.
+    echo Pushing to remote repository
+    echo.
+    git push origin master
+    git status
+
+_______________________________________________________________________________
+
+**********************
+Automating these steps
+**********************
+
+Build and Deploy steps have been automated into 2 small `.bat` files, that are
+stored directly in the root folder of this project.
+
+It is possible to run these steps by simply calling `Build` or `Deploy` from
+a command line.
+
+Example of `Build` command output:
+
+.. image:: img/Build.bat.PNG
+   :width: 100%   
+   :scale: 100%
+   :alt: a command prompt showing the result of Build command
+   :align: center
+
+Example of `Deploy` command output:
+
+.. image:: img/Deploy.bat.PNG
+   :width: 100%   
+   :scale: 100%
+   :alt: a command prompt showing the result of Deploy command
+   :align: center
