@@ -9,6 +9,12 @@ rd /s /q .\prd\
 REM Copy the content of docs\build\ to a brand new prd\ folder
 robocopy .\docs\build\ .\prd\ /E
 
+REM Unstage all changes
+echo.
+echo Unstaging all changes
+echo.
+git reset
+
 REM Force adding of prd\ folder to git index
 echo.
 echo Adding prd/ folder to git index 
