@@ -320,8 +320,8 @@ Deploy step is required.</p>
 <h2>Deploy steps: duplicate docs to prd/ and push<a class="headerlink" href="#deploy-steps-duplicate-docs-to-prd-and-push" title="Permalink to this headline">¶</a></h2>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>Git Working tree should be clean before deploying, as any stage change will be
-commited upon deployment.</p>
+<p>Git Working tree should be clean before deploying, as any staged change will be
+discarded upon deployment.</p>
 </div>
 <div class="section" id="duplicate-built-docs-to-prd-folder">
 <h3>Duplicate built docs to <cite>prd/</cite> folder<a class="headerlink" href="#duplicate-built-docs-to-prd-folder" title="Permalink to this headline">¶</a></h3>
@@ -341,6 +341,18 @@ robocopy .\docs\build\ .\prd\ /E
 </div>
 <div class="section" id="push-prd-folder-to-github">
 <h3>Push <cite>prd/</cite> folder to GitHub<a class="headerlink" href="#push-prd-folder-to-github" title="Permalink to this headline">¶</a></h3>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>To avoid unintentionnaly commiting local changes when deploying, the first step of deploying
+is to discard them</p>
+</div>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Unstage all changes</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Unstaging all changes
+<span class="k">echo</span>.
+git reset
+</pre></div>
+</div>
 <p>The <cite>prd/</cite> folder has been added to the root <cite>.gitignore</cite> file of this project so as to
 avoid unintentionnaly deploying to production unchecked docs.</p>
 <p>Therefore, to add the <cite>prd/</cite> folder to the Git index, the following commands are used:</p>

@@ -173,8 +173,8 @@ Deploy steps: duplicate docs to prd/ and push
 *********************************************
 
 .. caution::
-    Git Working tree should be clean before deploying, as any stage change will be
-    commited upon deployment.
+    Git Working tree should be clean before deploying, as any staged change will be
+    discarded upon deployment.
 
 Duplicate built docs to `prd/` folder
 =====================================
@@ -196,6 +196,18 @@ the `prd/` folder content:
 
 Push `prd/` folder to GitHub
 ============================
+
+.. caution::
+    To avoid unintentionnaly commiting local changes when deploying, the first step of deploying 
+    is to discard them
+
+.. code-block:: bat
+
+    REM Unstage all changes
+    echo.
+    echo Unstaging all changes
+    echo.
+    git reset
 
 The `prd/` folder has been added to the root `.gitignore` file of this project so as to 
 avoid unintentionnaly deploying to production unchecked docs.
