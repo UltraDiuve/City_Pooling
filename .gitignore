@@ -10,3 +10,4 @@
 /prd
 /build
 /docs/build/
+*.old

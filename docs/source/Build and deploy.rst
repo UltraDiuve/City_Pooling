@@ -47,10 +47,10 @@ The folder structure of this project is the following:
     │
     └── prd                         # "Production" folder, which is what can be 
         ├── index.html              # seen in GitHub pages
-        ├── geography.html          # obviously sent to GitHub repo
+        ├── geography.html          # sent to GitHub repo
         └── ...
 
-Documentation is deployed when `prd/` folder is updated and push to distant repo.
+Documentation is deployed when `prd/` folder is updated and pushed to distant repo.
 
 _______________________________________________________________________________
 

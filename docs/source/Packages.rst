@@ -1,6 +1,6 @@
-**********************
+********
 Packages
-**********************
+********
 
 The following packages have been developped and documented so far.
 
@@ -8,3 +8,4 @@ The following packages have been developped and documented so far.
    :maxdepth: 2
 
    geography
+   solver

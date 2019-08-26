@@ -29,13 +29,13 @@ Tools used so far to build it are:
 
 
 Project content
-####################
+###############
 
 .. toctree::
    :maxdepth: 2
 
    City Pooling
-   Packages
+   Packages documentation <apidoc-build/mods>
    Build and deploy
     
 
