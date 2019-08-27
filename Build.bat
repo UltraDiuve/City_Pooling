@@ -22,7 +22,7 @@ echo Running Sphinx apidoc...
 echo.
 rd /s /q .\docs\source\apidoc-build
 sphinx-apidoc -o .\docs\source\apidoc-build\ .\src\ -d 1 --force^
- --module-first --separate --tocfile mods
+ --module-first --separate --no-headings --tocfile mods
 
 REM Building the docs: building the html documentation
 echo.

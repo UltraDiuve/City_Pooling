@@ -1,3 +1,11 @@
+"""
+Scorer module documentation
+---------------------------
+
+This module docstring
+"""
+
+
 # imports
 import numpy as np
 

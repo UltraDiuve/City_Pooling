@@ -1,3 +1,6 @@
 """
-    This module docstring
+Geography package documentation
+-------------------------------
+
+This package docstring
 """
