@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Packages" href="Packages.html" />
+    <link rel="next" title="src" href="apidoc-build/mods.html" />
     <link rel="prev" title="Welcome to City Pooling’s documentation!" href="index.html" /> 
 </head>
 
@@ -100,14 +100,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#Random-and-optimal-solution-to-the-meshgrid-problem">Random and optimal solution to the meshgrid problem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Solver-package">Solver package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Solver">Solver</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#What-for?">What for?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Work-in-progress">Work in progress</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apidoc-build/mods.html">Packages documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Build and deploy.html">Build and Deploy</a></li>
 </ul>
 
@@ -421,7 +420,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h3>
 <p>The below imports are used in this notebook (yet this would require some cleansing as some of them are not required here anymore).</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -441,14 +440,14 @@ work on real life data… - last but not least, when I first got to see some sol
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../../src/&#39;</span><span class="p">))</span>
 <span class="kn">import</span> <span class="nn">geography.geography</span> <span class="k">as</span> <span class="nn">geo</span>
-<span class="kn">import</span> <span class="nn">solver.scorer.scorer</span> <span class="k">as</span> <span class="nn">scorer</span>
+<span class="kn">import</span> <span class="nn">solver.scorer</span> <span class="k">as</span> <span class="nn">scorer</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
 </pre></div>
 </div>
 </div>
 <p>As I update as I go the packages where the classes are defined, the lines below enable to reload my packages without having to restart the whole kernel.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -481,7 +480,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5>Random constructor<a class="headerlink" href="#Random-constructor" title="Permalink to this headline">¶</a></h5>
 <p>Constructor without parameters will just create a random map of n cities with default names, and compute the distance matrix with the “natural” euclidean distance. Explaination of the distance matrix is provided in the second example.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -491,12 +490,12 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a58bdb64a8&gt;,
- &lt;matplotlib.axes._subplots.AxesSubplot at 0x1a58c043080&gt;)
+<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x235968545c8&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x23595f0d5c8&gt;)
 </pre></div>
 </div>
 </div>
@@ -512,7 +511,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5>Forced coordinates constructor<a class="headerlink" href="#Forced-coordinates-constructor" title="Permalink to this headline">¶</a></h5>
 <p>It is also possible to force cities coordinates with a numpy array of shape (2, n) or the names of the cities with an iterable of names. Here, I will create a meshgrid of 16 cities, with a unit space of 1 between cities.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -544,12 +543,12 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a58d6c0470&gt;,
- &lt;matplotlib.axes._subplots.AxesSubplot at 0x1a58d6d1198&gt;)
+<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x23595e7bdc8&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x23595e95088&gt;)
 </pre></div>
 </div>
 </div>
@@ -577,7 +576,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5><code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as set<a class="headerlink" href="#show_config-with-pools-as-set" title="Permalink to this headline">¶</a></h5>
 <p>A way to modelize a pool would be a python set, as it enforces the fact that inside a pool, a city may only appear once. Yet it has a serious drawback.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -600,7 +599,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5><code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as lists<a class="headerlink" href="#show_config-with-pools-as-lists" title="Permalink to this headline">¶</a></h5>
 <p>If I want to maintain an order inside each pool - which I will want to do later on - I need to use lists (see just below).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -629,7 +628,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <p>Let’s now try to compare the (trivial) solution of this problem (a 4x4 grid is not much of a challenge!) and a random one. For this example, I will try to minimize the total distance traveled by all teams.</p>
 <p>First, I need to create a random configuration.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -648,12 +647,12 @@ work on real life data… - last but not least, when I first got to see some sol
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
-[ 8  4  7 15  2 10  6 14 13  9  3  5 12 11  0  1]
-{0: [8, 4, 7, 15], 1: [2, 10, 6, 14], 2: [13, 9, 3, 5], 3: [12, 11, 0, 1]}
+[ 1  3 11  7  8 15  4 10  6  2  9 12 14  0 13  5]
+{0: [1, 3, 11, 7], 1: [8, 15, 4, 10], 2: [6, 2, 9, 12], 3: [14, 0, 13, 5]}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -670,7 +669,7 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -689,18 +688,19 @@ work on real life data… - last but not least, when I first got to see some sol
 <p>One nice thing to notice is that finding a solution to the problem consists in permuting the cities in pools so that the lightest cells in the distance matrix get closest to the diagonal.</p>
 </div>
 </div>
-<div class="section" id="Solver-package">
-<h2>Solver package<a class="headerlink" href="#Solver-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Solver">
+<h2>Solver<a class="headerlink" href="#Solver" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="What-for?">
 <h3>What for?<a class="headerlink" href="#What-for?" title="Permalink to this headline">¶</a></h3>
 <p>Obviously, to solve the problem! That means: find the configuration that minimize my criterion cost.</p>
-<p>The solver class will have 2 subpackages: - a <code class="docutils literal notranslate"><span class="pre">scorer</span></code> package, that will provide costing functions and compute the cost of a configuration applied to a geography - a <code class="docutils literal notranslate"><span class="pre">solver</span></code> package, that will provide various algorithms to find a globally or locally optimal solution to the problem</p>
+<p>The solver package will have some submodules: - a <code class="docutils literal notranslate"><span class="pre">scorer</span></code> module, that will provide costing functions and compute the cost of a configuration applied to a geography - a <code class="docutils literal notranslate"><span class="pre">scoring_funcs</span></code> module, which will be a library of various scoring functions - a <code class="docutils literal notranslate"><span class="pre">solver</span></code> module, that will provide various algorithms to find a globally or locally optimal solution to the problem</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">scorer</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+<span></span><span class="n">myScorer</span> <span class="o">=</span> <span class="n">scorer</span><span class="o">.</span><span class="n">scorer</span><span class="p">(</span><span class="n">geog</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myScorer</span><span class="o">.</span><span class="n">score</span><span class="p">({</span><span class="mi">0</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">],</span> <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">]}))</span>
 </pre></div>
 </div>
 </div>
@@ -709,482 +709,8 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-youhou !
+3.414213562373095
 </pre></div></div>
-</div>
-</div>
-</div>
-<div class="section" id="Work-in-progress">
-<h2>Work in progress<a class="headerlink" href="#Work-in-progress" title="Permalink to this headline">¶</a></h2>
-<p>Below content is just for experimentation.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
-<span class="c1">#print(test[:,[1,2]])</span>
-<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">:][:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">geo</span><span class="o">.</span><span class="n">permute_array</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">seq</span><span class="p">))</span>
-
-
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[[1 3 2]
- [7 9 8]
- [4 6 5]]
-[[1 3 2]
- [7 9 8]
- [4 6 5]]
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-46-4bff31323cf9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      6</span>
-<span class="ansi-green-fg">      7</span> gege <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-blue-intense-fg ansi-bold">&#39;tej&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;ejak&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;ajzk&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 8</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>print<span class="ansi-yellow-intense-fg ansi-bold">(</span>gege<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: list indices must be integers or slices, not list
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">8000</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
-            <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
-            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;ticks&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">100000</span><span class="p">]},</span>
-            <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x18aa25e3390&gt;
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_25_1.png" src="_images/City_Pooling_25_1.png" />
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># paramètres du problème</span>
-<span class="n">pool_count</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">pools</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pool_count</span><span class="o">+</span><span class="mi">1</span><span class="p">)}</span>
-<span class="n">cities</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span>
-    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Montpellier&#39;</span><span class="p">,</span>
-    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Marseille&#39;</span><span class="p">,</span>
-    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Fontenay aux Roses&#39;</span><span class="p">,</span>
-    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Antony&#39;</span><span class="p">,</span>
-    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Saint Denis&#39;</span><span class="p">,</span>
-    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Sceaux&#39;</span><span class="p">,</span>
-    <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;Chatenay Malabry&#39;</span><span class="p">,</span>
-    <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;Lyon&#39;</span><span class="p">,</span>
-    <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;Bordeaux&#39;</span><span class="p">,</span>
-    <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;Tresses&#39;</span><span class="p">,</span>
-    <span class="mi">11</span><span class="p">:</span> <span class="s1">&#39;Pau&#39;</span><span class="p">,</span>
-
-
-<span class="p">}</span>
-<span class="n">city_count</span> <span class="o">=</span> <span class="mi">12</span>
-
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># définition des fonctions de base</span>
-<span class="k">def</span> <span class="nf">eucl_dist</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
-    <span class="c1"># distance euclidienne entre les points 1 et 2 de coordonnées (x1,y1) et (x2,y2)</span>
-    <span class="k">return</span><span class="p">(</span> <span class="p">((</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span> <span class="o">+</span> <span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">dist_sum</span><span class="p">(</span><span class="n">i_dist_matrix</span><span class="p">,</span> <span class="n">indexes</span><span class="p">):</span>
-    <span class="c1"># Ok : retourne la somme des distances depuis la matrice de distance</span>
-    <span class="c1"># basique, juste la somme des distances, mais optimisée.</span>
-    <span class="c1"># ne pas réutiliser en l&#39;état, finalement il vaut mieux passer par pandas</span>
-    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span>
-    <span class="k">for</span> <span class="n">combi</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">combi</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">+=</span> <span class="n">i_dist_matrix</span><span class="p">[</span><span class="n">c1</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># préparation des cas de test</span>
-<span class="k">def</span> <span class="nf">create_prob</span><span class="p">(</span><span class="n">city_count</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">):</span>
-    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">city_count</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">eucl_dist</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">j</span> <span class="k">else</span> <span class="mf">0.</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">city_count</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">city_count</span><span class="p">)])</span>
-    <span class="n">pools</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">city_count</span><span class="o">//</span><span class="n">pool_count</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">city_count</span><span class="o">//</span><span class="n">pool_count</span><span class="p">)))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pool_count</span><span class="p">)}</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">dist_matrix</span><span class="p">,</span> <span class="n">pools</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">plot_prob</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">cities</span><span class="p">,</span> <span class="n">plot_names</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span>
-        <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span>
-        <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span>
-        <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">labeltop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">labelright</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">plot_names</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)):</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">cities</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
-
-<span class="c1"># calcul de la complexité du problème</span>
-<span class="k">def</span> <span class="nf">combination_count</span><span class="p">(</span><span class="n">city_count</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">):</span>
-    <span class="c1"># uniquement quand les pools sont de la même taille</span>
-    <span class="n">city_per_pool</span> <span class="o">=</span> <span class="n">city_count</span> <span class="o">//</span> <span class="n">pool_count</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">city_count</span><span class="p">)</span> <span class="o">//</span> <span class="n">factorial</span><span class="p">(</span><span class="n">pool_count</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">city_per_pool</span><span class="p">)</span><span class="o">**</span><span class="n">pool_count</span><span class="p">))</span>
-
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">combination_count</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="n">combination_count</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-170.625
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># création de la table des distances sous la forme d&#39;un dataframe</span>
-<span class="c1"># dont les colonnes sont :</span>
-<span class="c1"># city_num</span>
-<span class="c1"># city_name</span>
-<span class="c1"># pool</span>
-<span class="c1"># dist_to_nth : distance to nth other city in pool</span>
-<span class="c1"># colonnes de calcul du score</span>
-<span class="k">def</span> <span class="nf">create_dist_df</span><span class="p">(</span><span class="n">i_cities</span><span class="p">,</span> <span class="n">i_pools</span><span class="p">,</span> <span class="n">i_coordinates</span><span class="p">):</span>
-    <span class="c1">#todo: nettoyer, on dirait du vomi...</span>
-    <span class="n">_dict_from</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="n">_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">i_pools</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">i_pools</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">_dict_from</span> <span class="o">=</span>         <span class="p">{</span>
-        <span class="s1">&#39;ID&#39;</span><span class="p">:</span>   <span class="nb">list</span><span class="p">(</span><span class="n">i_cities</span><span class="p">),</span>
-        <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">i_cities</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-        <span class="p">}</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_width</span><span class="p">):</span>
-        <span class="n">_dict_from</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">_dict_from</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">_dict_from</span><span class="p">)</span>
-
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ret</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">i_coordinates</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">update_pools_in_df</span><span class="p">(</span><span class="n">i_df</span><span class="p">,</span> <span class="n">i_pools</span><span class="p">,</span> <span class="n">i_dist_matrix</span> <span class="p">):</span>
-    <span class="k">for</span> <span class="n">_pool</span><span class="p">,</span> <span class="n">_cities</span> <span class="ow">in</span> <span class="n">i_pools</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">_city</span> <span class="ow">in</span> <span class="n">_cities</span><span class="p">:</span>
-            <span class="n">i_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">_city</span><span class="p">,</span> <span class="s1">&#39;pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_pool</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">for</span> <span class="n">_city2</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">_cities</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">_city</span> <span class="o">==</span> <span class="n">_city2</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="n">i_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">_city</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_city2</span>
-                <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">_city</span><span class="p">,</span> <span class="n">_city2</span><span class="p">))</span>
-                <span class="n">i_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">_city</span><span class="p">,</span> <span class="s1">&#39;dist&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">i_dist_matrix</span><span class="p">[</span><span class="n">c1</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span>
-                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">i_df</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i_df</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-
-
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># problem ploting from the full dataframe</span>
-<span class="k">def</span> <span class="nf">plot_from_df</span><span class="p">(</span><span class="n">_df</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">]):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]])</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]))</span>
-        <span class="n">i</span><span class="o">=</span><span class="mi">1</span>
-        <span class="k">while</span> <span class="s1">&#39;city&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_df</span><span class="p">:</span>
-            <span class="n">_city</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
-            <span class="n">_to</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">_city</span><span class="p">][[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">_to</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]],</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">_to</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]])</span>
-            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># functions for scoring</span>
-<span class="k">def</span> <span class="nf">row_scoring</span><span class="p">(</span><span class="n">_df</span><span class="p">):</span>
-    <span class="c1">#computes row total distance</span>
-    <span class="n">i</span><span class="o">=</span><span class="mi">2</span>
-    <span class="n">_ds</span> <span class="o">=</span> <span class="n">_df</span><span class="p">[</span><span class="s1">&#39;dist1&#39;</span><span class="p">]</span>
-    <span class="k">while</span> <span class="s1">&#39;dist&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_df</span><span class="p">:</span>
-        <span class="n">_ds</span> <span class="o">=</span> <span class="n">_ds</span><span class="o">+</span> <span class="n">_df</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">_df</span><span class="p">[</span><span class="s1">&#39;dist_sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_ds</span>
-
-<span class="k">def</span> <span class="nf">pool_scoring</span><span class="p">(</span><span class="n">_df</span><span class="p">,</span> <span class="n">mean_coef</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dist_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">std_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
-    <span class="c1"># function aggregating to pool and scoring</span>
-    <span class="n">_grouped_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;pool&#39;</span><span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-    <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_grouped_df</span><span class="p">[</span><span class="s1">&#39;dist_sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_grouped_df</span><span class="p">[</span><span class="s1">&#39;dist_sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-    <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_grouped_df</span><span class="p">[</span><span class="s1">&#39;dist_sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_grouped_df</span><span class="p">[</span><span class="s1">&#39;dist_sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-    <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">mean_coef</span> <span class="o">+</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">max_coef</span> <span class="o">+</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">dist_coef</span> <span class="o">+</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">std_coef</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">final_scoring</span><span class="p">(</span><span class="n">_df</span><span class="p">,</span> <span class="n">mean_coef</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dist_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">std_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
-    <span class="k">return</span><span class="p">(</span><span class="n">pool_scoring</span><span class="p">(</span><span class="n">_df</span><span class="p">,</span> <span class="n">mean_coef</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dist_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">std_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">)[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># test de mes fonctionnalités</span>
-
-<span class="n">coordinates</span><span class="p">,</span> <span class="n">dist_matrix</span><span class="p">,</span> <span class="n">pools</span> <span class="o">=</span> <span class="n">create_prob</span><span class="p">(</span><span class="n">city_count</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">)</span>
-<span class="n">plot_prob</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">cities</span><span class="p">,</span> <span class="n">plot_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">create_dist_df</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">pools</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
-<span class="n">update_pools_in_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pools</span><span class="p">,</span> <span class="n">dist_matrix</span> <span class="p">)</span>
-<span class="n">plot_from_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-<span class="n">row_scoring</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="n">pool_score</span> <span class="o">=</span> <span class="n">pool_scoring</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">mean_coef</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dist_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">std_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pool_score</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-    ID                Name  city1  city2     dist1     dist2         x  \
-0    0               Paris      1      2  0.719591  0.483975  0.906952
-1    1         Montpellier      0      2  0.719591  0.493541  0.517950
-2    2           Marseille      0      1  0.483975  0.493541  0.994240
-3    3  Fontenay aux Roses      4      5  0.714879  0.504493  0.731044
-4    4              Antony      3      5  0.714879  0.988142  0.026933
-5    5         Saint Denis      3      4  0.504493  0.988142  0.959725
-6    6              Sceaux      7      8  0.572923  0.291331  0.647073
-7    7    Chatenay Malabry      6      8  0.572923  0.281743  0.660808
-8    8                Lyon      6      7  0.291331  0.281743  0.647473
-9    9            Bordeaux     10     11  0.302546  0.263374  0.330264
-10  10             Tresses      9     11  0.302546  0.370390  0.392977
-11  11                 Pau      9     10  0.263374  0.370390  0.593172
-
-           y  pool  dist_sum
-0   0.970152     0  1.203566
-1   0.364769     0  1.213132
-2   0.494114     0  0.977516
-3   0.455082     1  1.219372
-4   0.331469     1  1.703021
-5   0.005396     1  1.492635
-6   0.083710     2  0.864254
-7   0.656468     2  0.854666
-8   0.375041     2  0.573074
-9   0.353133     3  0.565920
-10  0.057158     3  0.672936
-11  0.368783     3  0.633764
-           sum       max      mean       std     score
-pool
-0     3.394214  1.213132  1.131405  0.133358  1.131405
-1     4.415028  1.703021  1.471676  0.242505  1.471676
-2     2.291994  0.864254  0.763998  0.165414  0.763998
-3     1.872619  0.672936  0.624206  0.054144  0.624206
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_33_1.png" src="_images/City_Pooling_33_1.png" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_33_2.png" src="_images/City_Pooling_33_2.png" />
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># je brutalise un peu ; mais en tentant quand même de faire un générateur un peu malin</span>
-<span class="k">def</span> <span class="nf">pool_generator</span><span class="p">(</span><span class="n">city_count</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">,</span> <span class="n">current_city</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">current_pool_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cpt_debug</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="c1">#d&#39;abord, je prends l&#39;hypothèse que mes pools sont toutes de la même taille</span>
-    <span class="c1"># todo : gérer ce cas (pools pas toutes de la même taille)</span>
-    <span class="c1"># todo : je pense que maintenir la taille de mes pools serait plus malin que de refaire len(current_pool_dict[i])</span>
-    <span class="c1"># à chaque fois...</span>
-    <span class="k">if</span> <span class="n">current_pool_dict</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span> <span class="n">current_pool_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-    <span class="n">pool_size</span> <span class="o">=</span> <span class="n">city_count</span> <span class="o">//</span> <span class="n">pool_count</span>
-    <span class="k">if</span> <span class="n">current_city</span> <span class="o">&gt;=</span> <span class="n">city_count</span><span class="p">:</span>
-        <span class="k">yield</span><span class="p">(</span><span class="n">current_pool_dict</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current_pool_dict</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_pool_dict</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">pool_size</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">temp_pool_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">current_pool_dict</span><span class="p">)</span>
-        <span class="n">temp_pool_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current_city</span><span class="p">)</span>
-        <span class="k">yield from</span> <span class="n">pool_generator</span><span class="p">(</span><span class="n">city_count</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">,</span> <span class="n">current_city</span><span class="o">=</span><span class="n">current_city</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_pool_dict</span><span class="o">=</span><span class="n">temp_pool_dict</span><span class="p">,</span> <span class="n">cpt_debug</span><span class="o">=</span><span class="n">cpt_debug</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">def</span> <span class="nf">solve_brutal</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;brutal&#39;</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;brutal&#39;</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="n">solve_brutal</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">pool_count</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">pool</span> <span class="ow">in</span> <span class="n">pool_generator</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">create_dist_df</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
-    <span class="n">update_pools_in_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">dist_matrix</span> <span class="p">)</span>
-    <span class="c1">#plot_from_df(df)</span>
-    <span class="n">row_scoring</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-    <span class="c1">#pool_score = pool_scoring(df, mean_coef=1., dist_coef=0., max_coef=0., std_coef=0.)</span>
-    <span class="c1">#print(final_scoring(df, mean_coef=1., dist_coef=0., max_coef=0., std_coef=0.))</span>
-    <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">final_scoring</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">mean_coef</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dist_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">max_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">std_coef</span><span class="o">=</span><span class="mf">0.</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span> <span class="p">)</span>
-
-<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">result_list</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">plot_from_df</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">result_list</span><span class="p">)[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
-    <span class="k">pass</span>
-    <span class="c1">#print(result[0])</span>
-    <span class="c1">#plot_from_df(result[1])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yo&quot;</span><span class="p">)</span>
-
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-2.364419575639024
-2.4072830681873
-2.452606079129665
-5.9532278879468565
-5.956254016001984
-5.961584308650842
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_35_1.png" src="_images/City_Pooling_35_1.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_35_2.png" src="_images/City_Pooling_35_2.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_35_3.png" src="_images/City_Pooling_35_3.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_35_4.png" src="_images/City_Pooling_35_4.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_35_5.png" src="_images/City_Pooling_35_5.png" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/City_Pooling_35_6.png" src="_images/City_Pooling_35_6.png" />
 </div>
 </div>
 </div>
@@ -1198,7 +724,7 @@ pool
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Packages.html" class="btn btn-neutral float-right" title="Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="apidoc-build/mods.html" class="btn btn-neutral float-right" title="src" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to City Pooling’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

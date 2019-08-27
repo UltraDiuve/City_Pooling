@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="geography package" href="geography.html" /> 
+    <link rel="prev" title="Scoring_funcs module documentation" href="apidoc-build/solver.scoring_funcs.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,13 +81,17 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="City Pooling.html">City Pooling Notebook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Packages.html">Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apidoc-build/mods.html">Packages documentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Build and Deploy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-steps-lint-test-and-make-documentation">Build steps: lint, test and make documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#linting-running-flake8">Linting: running Flake8</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#unit-testing-running-pytest">Unit testing: running Pytest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#making-the-docs-running-sphinx">Making the docs: running Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-the-docs-running-sphinx">Making the docs: running Sphinx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#automatic-documentation-from-python-modules-sphinx-apidoc">Automatic documentation from python modules: sphinx-apidoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-of-html-files-sphinx-build-make-html">Build of html files: sphinx-build (make html)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#deploy-steps-duplicate-docs-to-prd-and-push">Deploy steps: duplicate docs to prd/ and push</a><ul>
@@ -215,25 +219,46 @@ version of the documentation.</p></li>
 │   ├── test_geography.py       # run by pytest
 │   └── ...
 │
-├── docs                        # all Sphinx files are in docs/
-│   ├── source                  # where Jupyter notebook and .rst files are
-│   │   ├── index.rst
-│   │   ├── geography.rst
-│   │   ├── Packages.rst
-│   │   ├── City Pooling.ipynb
+├── docs                        # all Sphinx files are in docs/, source
+│   │                           # files as build artefacts
+│   ├── source                  # where source files for docs are stored
+│   │   ├── index.rst           # Main toctree source
+│   │   ├── Build and deploy.rst# Other rst sources
+│   │   ├── City Pooling.ipynb  # Jupyter Notebook sources
+│   │   ├── apidoc-build        # Result of sphinx-apidoc build
+│   │   │   ├── mods.rst        # Are built before sphinx-build
+│   │   │   ├── geography.rst
+│   │   │   ├── solver.rst
+│   │   │   └── ...
 │   │   └── ...
 │   └── build                   # result of Sphinx build (staged here for
 │       ├── index.html          # checking before shipping to production)
-│       ├── geography.html      # not sent to GitHub repo (build artefacts)
+│       │                       # not sent to GitHub repo (build artefacts)
+│       ├── Build and deploy.html
+│       ├── apidoc-build
+│       │   ├── mods.html
+│       │   ├── geography.html
+│       │   ├── solver.html
+│       │   └── ...
 │       └── ...
 │
 └── prd                         # &quot;Production&quot; folder, which is what can be
-    ├── index.html              # seen in GitHub pages
-    ├── geography.html          # obviously sent to GitHub repo
+    │                           # seen in GitHub pages
+    │                           # sent to GitHub repo. Is a copy of
+    │                           # docs/build/ after successful checking
+    ├── index.html
+    ├── geography.html
+    ├── Build and deploy.html
+    ├── apidoc-build
+    │   ├── mods.html
+    │   ├── geography.html
+    │   ├── solver.html
+    │   └── ...
     └── ...
 </pre></div>
 </div>
-<p>Documentation is deployed when <cite>prd/</cite> folder is updated and push to distant repo.</p>
+<p>Documentation is deployed when <cite>prd/</cite> folder is updated from docs/build/ and
+pushed to distant repo.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="build-steps-lint-test-and-make-documentation">
@@ -290,6 +315,28 @@ pytest is then able to import sources packages.</p>
 </div>
 <div class="section" id="making-the-docs-running-sphinx">
 <h3>Making the docs: running Sphinx<a class="headerlink" href="#making-the-docs-running-sphinx" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="automatic-documentation-from-python-modules-sphinx-apidoc">
+<h4>Automatic documentation from python modules: sphinx-apidoc<a class="headerlink" href="#automatic-documentation-from-python-modules-sphinx-apidoc" title="Permalink to this headline">¶</a></h4>
+<p>The docstrings from python modules are preprocessed by the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html">Sphinx apidoc</a> utility,
+which discovers the packages of the project and then creates .rst files from
+their docstrings.</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Building the docs: creating .rst files with apidoc</span>
+<span class="k">echo</span>.
+<span class="k">echo</span> Running Sphinx apidoc...
+<span class="k">echo</span>.
+<span class="k">rd</span> /s /q .\docs\source\apidoc-build
+sphinx-apidoc -o .\docs\source\apidoc-build\ .\src\ -d 1 --force<span class="se">^</span>
+<span class="se">-</span>-module-first --separate --no-headings --tocfile mods
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To avoid keeping outdated .rst files in the docs/source/apidoc-build
+folder, this folder is deleted before running the <cite>sphinx-apidoc</cite> command.</p>
+</div>
+</div>
+<div class="section" id="build-of-html-files-sphinx-build-make-html">
+<h4>Build of html files: sphinx-build (make html)<a class="headerlink" href="#build-of-html-files-sphinx-build-make-html" title="Permalink to this headline">¶</a></h4>
 <p>Sphinx comes in with a handy <cite>make.bat</cite> file which enables to smoothly build
 all the documentation for the project.</p>
 <p>It can be run by simply using the <cite>make html</cite> command, from the <cite>docs</cite> folder:</p>
@@ -315,19 +362,20 @@ Deploy step is required.</p>
 </div>
 </div>
 </div>
+</div>
 <hr class="docutils" />
 <div class="section" id="deploy-steps-duplicate-docs-to-prd-and-push">
 <h2>Deploy steps: duplicate docs to prd/ and push<a class="headerlink" href="#deploy-steps-duplicate-docs-to-prd-and-push" title="Permalink to this headline">¶</a></h2>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>Git Working tree should be clean before deploying, as any staged change will be
-discarded upon deployment.</p>
+<p>Git Working tree should be clean before deploying, as any staged change
+will be discarded upon deployment.</p>
 </div>
 <div class="section" id="duplicate-built-docs-to-prd-folder">
 <h3>Duplicate built docs to <cite>prd/</cite> folder<a class="headerlink" href="#duplicate-built-docs-to-prd-folder" title="Permalink to this headline">¶</a></h3>
-<p>First step is to duplicate the whole content of <cite>docs/build/</cite> folder to <cite>prd/</cite> folder.
-This is done by simply using the <cite>robocopy</cite> tool from Windows after having deleted
-the <cite>prd/</cite> folder content:</p>
+<p>First step is to duplicate the whole content of <cite>docs/build/</cite> folder to <cite>prd/</cite>
+folder. This is done by simply using the <cite>robocopy</cite> tool from Windows after
+having deleted the <cite>prd/</cite> folder content:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">echo</span> Replacing prd/ folder content
 <span class="k">echo</span>.
 
@@ -343,8 +391,8 @@ robocopy .\docs\build\ .\prd\ /E
 <h3>Push <cite>prd/</cite> folder to GitHub<a class="headerlink" href="#push-prd-folder-to-github" title="Permalink to this headline">¶</a></h3>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>To avoid unintentionnaly commiting local changes when deploying, the first step of deploying
-is to discard them</p>
+<p>To avoid unintentionnaly commiting local changes when deploying, the first
+step of deploying is to discard them.</p>
 </div>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Unstage all changes</span>
 <span class="k">echo</span>.
@@ -353,9 +401,10 @@ is to discard them</p>
 git reset
 </pre></div>
 </div>
-<p>The <cite>prd/</cite> folder has been added to the root <cite>.gitignore</cite> file of this project so as to
-avoid unintentionnaly deploying to production unchecked docs.</p>
-<p>Therefore, to add the <cite>prd/</cite> folder to the Git index, the following commands are used:</p>
+<p>The <cite>prd/</cite> folder has been added to the root <cite>.gitignore</cite> file of this project
+so as to avoid unintentionnaly deploying to production unchecked docs.</p>
+<p>Therefore, to add the <cite>prd/</cite> folder to the Git index, the following commands
+are used:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Force adding of prd\ folder to git index</span>
 <span class="k">echo</span>.
 <span class="k">echo</span> Adding prd/ folder to git index
@@ -401,7 +450,7 @@ a command line.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="geography.html" class="btn btn-neutral float-left" title="geography package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="apidoc-build/solver.scoring_funcs.html" class="btn btn-neutral float-left" title="Scoring_funcs module documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
