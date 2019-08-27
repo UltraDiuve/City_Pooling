@@ -33,24 +33,45 @@ The folder structure of this project is the following:
     │   ├── test_geography.py       # run by pytest
     │   └── ...
     │
-    ├── docs                        # all Sphinx files are in docs/
-    │   ├── source                  # where Jupyter notebook and .rst files are
-    │   │   ├── index.rst
-    │   │   ├── geography.rst
-    │   │   ├── Packages.rst
-    │   │   ├── City Pooling.ipynb
+    ├── docs                        # all Sphinx files are in docs/, source 
+    │   │                           # files as build artefacts
+    │   ├── source                  # where source files for docs are stored
+    │   │   ├── index.rst           # Main toctree source
+    │   │   ├── Build and deploy.rst# Other rst sources
+    │   │   ├── City Pooling.ipynb  # Jupyter Notebook sources
+    │   │   ├── apidoc-build        # Result of sphinx-apidoc build
+    │   │   │   ├── mods.rst        # Are built before sphinx-build
+    │   │   │   ├── geography.rst
+    │   │   │   ├── solver.rst
+    │   │   │   └── ...
     │   │   └── ...
     │   └── build                   # result of Sphinx build (staged here for 
     │       ├── index.html          # checking before shipping to production)
-    │       ├── geography.html      # not sent to GitHub repo (build artefacts)
+    │       │                       # not sent to GitHub repo (build artefacts)
+    │       ├── Build and deploy.html      
+    │       ├── apidoc-build
+    │       │   ├── mods.html  
+    │       │   ├── geography.html
+    │       │   ├── solver.html
+    │       │   └── ... 
     │       └── ...
     │
     └── prd                         # "Production" folder, which is what can be 
-        ├── index.html              # seen in GitHub pages
-        ├── geography.html          # sent to GitHub repo
+        │                           # seen in GitHub pages
+        │                           # sent to GitHub repo. Is a copy of 
+        │                           # docs/build/ after successful checking
+        ├── index.html              
+        ├── geography.html          
+        ├── Build and deploy.html      
+        ├── apidoc-build
+        │   ├── mods.html  
+        │   ├── geography.html
+        │   ├── solver.html
+        │   └── ...
         └── ...
 
-Documentation is deployed when `prd/` folder is updated and pushed to distant repo.
+Documentation is deployed when `prd/` folder is updated from docs/build/ and 
+pushed to distant repo.
 
 _______________________________________________________________________________
 
@@ -135,6 +156,31 @@ pytest is then able to import sources packages.
 Making the docs: running Sphinx
 ===============================
 
+Automatic documentation from python modules: sphinx-apidoc
+----------------------------------------------------------
+
+The docstrings from python modules are preprocessed by the `Sphinx apidoc 
+<https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html>`_ utility, 
+which discovers the packages of the project and then creates .rst files from 
+their docstrings.
+
+.. code-block:: bat
+
+    REM Building the docs: creating .rst files with apidoc
+    echo.
+    echo Running Sphinx apidoc...
+    echo.
+    rd /s /q .\docs\source\apidoc-build
+    sphinx-apidoc -o .\docs\source\apidoc-build\ .\src\ -d 1 --force^
+    --module-first --separate --no-headings --tocfile mods
+
+.. note::
+    To avoid keeping outdated .rst files in the docs/source/apidoc-build 
+    folder, this folder is deleted before running the `sphinx-apidoc` command.
+
+Build of html files: sphinx-build (make html)
+---------------------------------------------
+
 Sphinx comes in with a handy `make.bat` file which enables to smoothly build 
 all the documentation for the project.
 
@@ -173,15 +219,15 @@ Deploy steps: duplicate docs to prd/ and push
 *********************************************
 
 .. caution::
-    Git Working tree should be clean before deploying, as any staged change will be
-    discarded upon deployment.
+    Git Working tree should be clean before deploying, as any staged change 
+    will be discarded upon deployment.
 
 Duplicate built docs to `prd/` folder
 =====================================
 
-First step is to duplicate the whole content of `docs/build/` folder to `prd/` folder.
-This is done by simply using the `robocopy` tool from Windows after having deleted
-the `prd/` folder content:
+First step is to duplicate the whole content of `docs/build/` folder to `prd/` 
+folder. This is done by simply using the `robocopy` tool from Windows after 
+having deleted the `prd/` folder content:
 
 .. code-block:: bat
 
@@ -198,8 +244,8 @@ Push `prd/` folder to GitHub
 ============================
 
 .. caution::
-    To avoid unintentionnaly commiting local changes when deploying, the first step of deploying 
-    is to discard them.
+    To avoid unintentionnaly commiting local changes when deploying, the first 
+    step of deploying is to discard them.
 
 .. code-block:: bat
 
@@ -209,10 +255,11 @@ Push `prd/` folder to GitHub
     echo.
     git reset
 
-The `prd/` folder has been added to the root `.gitignore` file of this project so as to 
-avoid unintentionnaly deploying to production unchecked docs.
+The `prd/` folder has been added to the root `.gitignore` file of this project 
+so as to avoid unintentionnaly deploying to production unchecked docs.
 
-Therefore, to add the `prd/` folder to the Git index, the following commands are used:
+Therefore, to add the `prd/` folder to the Git index, the following commands 
+are used:
 
 .. code-block:: bat
 
