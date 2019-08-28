@@ -299,19 +299,19 @@ test files looks like:</p>
 </div>
 <p>Simply running pytest in the root directory would result in a ‘ModuleNotFoundError’
 as <cite>src</cite> is not in the Python path.</p>
-<a class="reference internal image-reference" href="_images/ModuleNotFound_pytest_error.png"><img alt="a pytest module not found exception error message" class="align-center" src="_images/ModuleNotFound_pytest_error.png" style="width: 100.0%; height: 339.0px;" /></a>
+<a class="reference internal image-reference" href="_images/ModuleNotFound_pytest_error.png"><img alt="a pytest module not found exception error message" class="align-center" src="_images/ModuleNotFound_pytest_error.png" style="width: 100.0%; height: 426.0px;" /></a>
 <p>One way to work around this problem is to
 simply use the following command line from the project root directory:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="c1">REM Testing: running pytest</span>
 <span class="k">echo</span>.
 <span class="k">echo</span> Running pytest...
 <span class="k">echo</span>.
-python -m pytest --cov
+python -m pytest --cov=src --cov-report term-missing
 </pre></div>
 </div>
 <p>The <cite>-m</cite> option adds the current to the Python path, and during test discovery
 pytest is then able to import sources packages.</p>
-<a class="reference internal image-reference" href="_images/pytest_success_msg.png"><img alt="a pytest success message" class="align-center" src="_images/pytest_success_msg.png" style="width: 100.0%; height: 284.0px;" /></a>
+<a class="reference internal image-reference" href="_images/pytest_success_msg.png"><img alt="a pytest success message" class="align-center" src="_images/pytest_success_msg.png" style="width: 100.0%; height: 316.0px;" /></a>
 </div>
 <div class="section" id="making-the-docs-running-sphinx">
 <h3>Making the docs: running Sphinx<a class="headerlink" href="#making-the-docs-running-sphinx" title="Permalink to this headline">¶</a></h3>

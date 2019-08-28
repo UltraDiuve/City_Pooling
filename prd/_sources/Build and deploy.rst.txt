@@ -142,7 +142,7 @@ simply use the following command line from the project root directory:
     echo.
     echo Running pytest...
     echo.
-    python -m pytest --cov
+    python -m pytest --cov=src --cov-report term-missing
 
 The `-m` option adds the current to the Python path, and during test discovery 
 pytest is then able to import sources packages.
