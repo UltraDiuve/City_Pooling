@@ -14,7 +14,7 @@ REM Testing: running pytest
 echo.
 echo Running pytest...
 echo.
-python -m pytest --cov
+python -m pytest --cov=src --cov-report term-missing
 
 REM Building the docs: creating .rst files with apidoc
 echo.

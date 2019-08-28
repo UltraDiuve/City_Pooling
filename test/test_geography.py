@@ -1,5 +1,5 @@
 """
-Unit tests for the geography package
+Unit tests for the geography module
 """
 
 from src.geography import geography
