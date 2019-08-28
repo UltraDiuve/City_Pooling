@@ -2,7 +2,12 @@
 Scorer module documentation
 ---------------------------
 
-This module docstring
+This module probides a :class:`Scorer` class that will enable one to get the
+score of a configuration on a :class:`~geography.geography.Geography`.
+
+Computing a score is the first necessary step to find the configuration that
+gives the lowest score (i.e. cost) for a given
+:class:`~geography.geography.Geography`.
 """
 
 
@@ -13,21 +18,21 @@ import numpy as np
 from . import scoring_funcs
 
 
-class scorer():
+class Scorer():
     """ Class defining a scorer (utility to compute score)
 
     This class implements a scorer utility that will compute the score of a
     configuration for a geography.
 
     A scorer must have a scoring function defined as an attribute, as well as a
-    :class:`geography`.
+    :class:`~geography.geography.Geography`.
 
     Attributes:
         _scoring_func (function): the function to be applied for scoring
-        geo (:class:`~geography.geography.geography`): the geography on which
+        geo (:class:`~geography.geography.Geography`): the geography on which
             score
         city_total_dists (dict): the distance sum for each city for the current
-        configuration
+            configuration
     """
     def __init__(self, geo, scoring_func=scoring_funcs.city_max):
         """ Constructor method of scorer
@@ -38,7 +43,7 @@ class scorer():
             scoring_func (function): the function to be applied for scoring
 
         Returns:
-            The initialized :class:`scorer`.
+            The initialized :class:`Scorer`.
             """
         self.geo = geo
         self._scoring_func = scoring_func

@@ -2,8 +2,14 @@
 Geography module documentation
 ------------------------------
 
-This module docstring
+This module provides a geography class that represents a map of cities.
+The central part of this class is the distance matrix that stores the distances
+between each couple of cities.
+
+In further version, this class will be set as abstract, so that *real*
+geographies can be gotten from Google maps.
 """
+
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -56,7 +62,7 @@ def permute_array(arr, seq):
     return(arr[:, seq][seq, :])
 
 
-class geography():
+class Geography():
     """ Class defining a geography (cities and distance matrix)
 
     This class implements a geography with a list of named cities with their
@@ -94,7 +100,7 @@ class geography():
 
     def __init__(self, cities_count, cities_coordinates=None,
                  cities_names=None, dist_func=dist):
-        """ Constructor method of geography
+        """ Constructor method of Geography
 
         This method will construct a geography from parameters and initialize
         its distance matrix
@@ -112,7 +118,7 @@ class geography():
                 euclidean distance
 
         Returns:
-            The initialized :class:`geography`.
+            The initialized :class:`Geography`.
             """
 
         self.cities_count = cities_count
@@ -234,7 +240,7 @@ class geography():
 
         This method will show the geography map with the configuration
         highlighted and a reordered distance matrix. This function is build on
-        top of the simpler `show` method of this class.
+        top of the simpler :meth:`show` method of this class.
 
         Args:
             configuration (dict of iterables): the configuration to apply.
@@ -242,7 +248,7 @@ class geography():
                 the iterables should be city indexes.
 
         Note:
-            no city index should be inside multiple pools.
+            No city index should be inside multiple pools.
         """
         plt.figure(figsize=(20, 10))
 
