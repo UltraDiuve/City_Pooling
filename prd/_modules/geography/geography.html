@@ -149,8 +149,14 @@
 <span class="sd">Geography module documentation</span>
 <span class="sd">------------------------------</span>
 
-<span class="sd">This module docstring</span>
+<span class="sd">This module provides a geography class that represents a map of cities.</span>
+<span class="sd">The central part of this class is the distance matrix that stores the distances</span>
+<span class="sd">between each couple of cities.</span>
+
+<span class="sd">In further version, this class will be set as abstract, so that *real*</span>
+<span class="sd">geographies can be gotten from Google maps.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -203,7 +209,7 @@
     <span class="k">return</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span> <span class="n">seq</span><span class="p">][</span><span class="n">seq</span><span class="p">,</span> <span class="p">:])</span></div>
 
 
-<div class="viewcode-block" id="geography"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography">[docs]</a><span class="k">class</span> <span class="nc">geography</span><span class="p">():</span>
+<div class="viewcode-block" id="Geography"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography">[docs]</a><span class="k">class</span> <span class="nc">Geography</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Class defining a geography (cities and distance matrix)</span>
 
 <span class="sd">    This class implements a geography with a list of named cities with their</span>
@@ -223,7 +229,7 @@
 <span class="sd">            distance matrix of the geography.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="geography.init_dist_matrix"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography.init_dist_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">init_dist_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">dist</span><span class="p">):</span>
+<div class="viewcode-block" id="Geography.init_dist_matrix"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography.init_dist_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">init_dist_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">dist</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Method which will initialize the distance matrix</span>
 
 <span class="sd">        Args:</span>
@@ -239,9 +245,9 @@
                 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cities_count</span><span class="p">)]</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cities_count</span><span class="p">)])</span></div>
 
-<div class="viewcode-block" id="geography.__init__"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cities_count</span><span class="p">,</span> <span class="n">cities_coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Geography.__init__"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cities_count</span><span class="p">,</span> <span class="n">cities_coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">cities_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dist_func</span><span class="o">=</span><span class="n">dist</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Constructor method of geography</span>
+        <span class="sd">&quot;&quot;&quot; Constructor method of Geography</span>
 
 <span class="sd">        This method will construct a geography from parameters and initialize</span>
 <span class="sd">        its distance matrix</span>
@@ -259,7 +265,7 @@
 <span class="sd">                euclidean distance</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            The initialized :class:`geography`.</span>
+<span class="sd">            The initialized :class:`Geography`.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cities_count</span> <span class="o">=</span> <span class="n">cities_count</span>
@@ -276,7 +282,7 @@
         <span class="c1"># initialize distance matrix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_dist_matrix</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">dist_func</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="geography.draw_map"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography.draw_map">[docs]</a>    <span class="k">def</span> <span class="nf">draw_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_in</span><span class="p">,</span> <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="Geography.draw_map"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography.draw_map">[docs]</a>    <span class="k">def</span> <span class="nf">draw_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_in</span><span class="p">,</span> <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot; Method that will populate an axis with the map of the geograpy</span>
 
 <span class="sd">        This method is called through the show method and will populate the</span>
@@ -310,7 +316,7 @@
             <span class="n">labelright</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">axis_in</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Map of Geography</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="geography.draw_dist_matrix"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography.draw_dist_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">draw_dist_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_in</span><span class="p">,</span> <span class="n">dist_matrix</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Geography.draw_dist_matrix"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography.draw_dist_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">draw_dist_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_in</span><span class="p">,</span> <span class="n">dist_matrix</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot; Method that will populate an axis with the distance matrix</span>
 
@@ -339,7 +345,7 @@
                     <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">axis_in</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distance Matrix</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="geography.show"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">map_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">dist_matrix_kwargs</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="Geography.show"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">map_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">dist_matrix_kwargs</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot; Method to show a graphical representation of the geography</span>
 
 <span class="sd">        This method will draw the geography in a plane, and give a view of the</span>
@@ -375,13 +381,13 @@
 
         <span class="k">return</span><span class="p">(</span><span class="n">ax_map</span><span class="p">,</span> <span class="n">ax_dist_matrix</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="geography.show_config"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.geography.show_config">[docs]</a>    <span class="k">def</span> <span class="nf">show_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">map_kwargs</span><span class="o">=</span><span class="p">{},</span>
+<div class="viewcode-block" id="Geography.show_config"><a class="viewcode-back" href="../../apidoc-build/geography.geography.html#geography.geography.Geography.show_config">[docs]</a>    <span class="k">def</span> <span class="nf">show_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">show_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">map_kwargs</span><span class="o">=</span><span class="p">{},</span>
                     <span class="n">dist_matrix_kwargs</span><span class="o">=</span><span class="p">{}):</span>
         <span class="sd">&quot;&quot;&quot; Method which will give a representation of a configuration applied</span>
 
 <span class="sd">        This method will show the geography map with the configuration</span>
 <span class="sd">        highlighted and a reordered distance matrix. This function is build on</span>
-<span class="sd">        top of the simpler `show` method of this class.</span>
+<span class="sd">        top of the simpler :meth:`show` method of this class.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            configuration (dict of iterables): the configuration to apply.</span>
@@ -389,7 +395,7 @@
 <span class="sd">                the iterables should be city indexes.</span>
 
 <span class="sd">        Note:</span>
-<span class="sd">            no city index should be inside multiple pools.</span>
+<span class="sd">            No city index should be inside multiple pools.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 

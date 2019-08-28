@@ -149,7 +149,12 @@
 <span class="sd">Scorer module documentation</span>
 <span class="sd">---------------------------</span>
 
-<span class="sd">This module docstring</span>
+<span class="sd">This module probides a :class:`Scorer` class that will enable one to get the</span>
+<span class="sd">score of a configuration on a :class:`~geography.geography.Geography`.</span>
+
+<span class="sd">Computing a score is the first necessary step to find the configuration that</span>
+<span class="sd">gives the lowest score (i.e. cost) for a given</span>
+<span class="sd">:class:`~geography.geography.Geography`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
@@ -160,23 +165,23 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">scoring_funcs</span>
 
 
-<div class="viewcode-block" id="scorer"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.scorer">[docs]</a><span class="k">class</span> <span class="nc">scorer</span><span class="p">():</span>
+<div class="viewcode-block" id="Scorer"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.Scorer">[docs]</a><span class="k">class</span> <span class="nc">Scorer</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Class defining a scorer (utility to compute score)</span>
 
 <span class="sd">    This class implements a scorer utility that will compute the score of a</span>
 <span class="sd">    configuration for a geography.</span>
 
 <span class="sd">    A scorer must have a scoring function defined as an attribute, as well as a</span>
-<span class="sd">    :class:`geography`.</span>
+<span class="sd">    :class:`~geography.geography.Geography`.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        _scoring_func (function): the function to be applied for scoring</span>
-<span class="sd">        geo (:class:`~geography.geography.geography`): the geography on which</span>
+<span class="sd">        geo (:class:`~geography.geography.Geography`): the geography on which</span>
 <span class="sd">            score</span>
 <span class="sd">        city_total_dists (dict): the distance sum for each city for the current</span>
-<span class="sd">        configuration</span>
+<span class="sd">            configuration</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="scorer.__init__"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.scorer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">scoring_func</span><span class="o">=</span><span class="n">scoring_funcs</span><span class="o">.</span><span class="n">city_max</span><span class="p">):</span>
+<div class="viewcode-block" id="Scorer.__init__"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.Scorer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">scoring_func</span><span class="o">=</span><span class="n">scoring_funcs</span><span class="o">.</span><span class="n">city_max</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Constructor method of scorer</span>
 
 <span class="sd">        This method will construct a scorer and initialize its scoring function</span>
@@ -185,12 +190,12 @@
 <span class="sd">            scoring_func (function): the function to be applied for scoring</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            The initialized :class:`scorer`.</span>
+<span class="sd">            The initialized :class:`Scorer`.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geo</span> <span class="o">=</span> <span class="n">geo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scoring_func</span> <span class="o">=</span> <span class="n">scoring_func</span></div>
 
-<div class="viewcode-block" id="scorer.compute_city_total_dists"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.scorer.compute_city_total_dists">[docs]</a>    <span class="k">def</span> <span class="nf">compute_city_total_dists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+<div class="viewcode-block" id="Scorer.compute_city_total_dists"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.Scorer.compute_city_total_dists">[docs]</a>    <span class="k">def</span> <span class="nf">compute_city_total_dists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Utility function that compute the total dist for each city</span>
 
 <span class="sd">        This methods computes the total dist for each city and stores the</span>
@@ -208,7 +213,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">city_total_dists</span><span class="p">[</span><span class="n">city_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dist_matrix</span><span class="p">[</span><span class="n">city_index</span><span class="p">,</span> <span class="n">pool_content</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="scorer.score"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.scorer.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+<div class="viewcode-block" id="Scorer.score"><a class="viewcode-back" href="../../apidoc-build/solver.scorer.html#solver.scorer.Scorer.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Scoring function of scorer class</span>
 
 <span class="sd">        This methods returns the score computed for the configuration applied</span>

@@ -190,19 +190,23 @@
 </style>
 <span class="target" id="module-solver.scorer"></span><div class="section" id="scorer-module-documentation">
 <h1>Scorer module documentation<a class="headerlink" href="#scorer-module-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This module docstring</p>
+<p>This module probides a <a class="reference internal" href="#solver.scorer.Scorer" title="solver.scorer.Scorer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scorer</span></code></a> class that will enable one to get the
+score of a configuration on a <a class="reference internal" href="geography.geography.html#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
+<p>Computing a score is the first necessary step to find the configuration that
+gives the lowest score (i.e. cost) for a given
+<a class="reference internal" href="geography.geography.html#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
 <dl class="class">
-<dt id="solver.scorer.scorer">
-<em class="property">class </em><code class="sig-prename descclassname">solver.scorer.</code><code class="sig-name descname">scorer</code><span class="sig-paren">(</span><em class="sig-param">geo</em>, <em class="sig-param">scoring_func=&lt;function city_max&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#scorer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.scorer" title="Permalink to this definition">¶</a></dt>
+<dt id="solver.scorer.Scorer">
+<em class="property">class </em><code class="sig-prename descclassname">solver.scorer.</code><code class="sig-name descname">Scorer</code><span class="sig-paren">(</span><em class="sig-param">geo</em>, <em class="sig-param">scoring_func=&lt;function city_max&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#Scorer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.Scorer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class defining a scorer (utility to compute score)</p>
 <p>This class implements a scorer utility that will compute the score of a
 configuration for a geography.</p>
 <p>A scorer must have a scoring function defined as an attribute, as well as a
-<a class="reference internal" href="geography.html#module-geography" title="geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">geography</span></code></a>.</p>
+<a class="reference internal" href="geography.geography.html#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
 <dl class="attribute">
-<dt id="solver.scorer.scorer._scoring_func">
-<code class="sig-name descname">_scoring_func</code><a class="headerlink" href="#solver.scorer.scorer._scoring_func" title="Permalink to this definition">¶</a></dt>
+<dt id="solver.scorer.Scorer._scoring_func">
+<code class="sig-name descname">_scoring_func</code><a class="headerlink" href="#solver.scorer.Scorer._scoring_func" title="Permalink to this definition">¶</a></dt>
 <dd><p>the function to be applied for scoring</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -212,21 +216,22 @@ configuration for a geography.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="solver.scorer.scorer.geo">
-<code class="sig-name descname">geo</code><a class="headerlink" href="#solver.scorer.scorer.geo" title="Permalink to this definition">¶</a></dt>
+<dt id="solver.scorer.Scorer.geo">
+<code class="sig-name descname">geo</code><a class="headerlink" href="#solver.scorer.Scorer.geo" title="Permalink to this definition">¶</a></dt>
 <dd><p>the geography on which
 score</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="geography.geography.html#geography.geography.geography" title="geography.geography.geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">geography</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="geography.geography.html#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="solver.scorer.scorer.city_total_dists">
-<code class="sig-name descname">city_total_dists</code><a class="headerlink" href="#solver.scorer.scorer.city_total_dists" title="Permalink to this definition">¶</a></dt>
-<dd><p>the distance sum for each city for the current</p>
+<dt id="solver.scorer.Scorer.city_total_dists">
+<code class="sig-name descname">city_total_dists</code><a class="headerlink" href="#solver.scorer.Scorer.city_total_dists" title="Permalink to this definition">¶</a></dt>
+<dd><p>the distance sum for each city for the current
+configuration</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -234,14 +239,9 @@ score</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="solver.scorer.scorer.configuration">
-<code class="sig-name descname">configuration</code><a class="headerlink" href="#solver.scorer.scorer.configuration" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
-<dt id="solver.scorer.scorer.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">geo</em>, <em class="sig-param">scoring_func=&lt;function city_max&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#scorer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.scorer.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="solver.scorer.Scorer.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">geo</em>, <em class="sig-param">scoring_func=&lt;function city_max&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#Scorer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.Scorer.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor method of scorer</p>
 <p>This method will construct a scorer and initialize its scoring function</p>
 <dl class="field-list simple">
@@ -249,14 +249,14 @@ score</p>
 <dd class="field-odd"><p><strong>scoring_func</strong> (<em>function</em>) – the function to be applied for scoring</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The initialized <a class="reference internal" href="#solver.scorer.scorer" title="solver.scorer.scorer"><code class="xref py py-class docutils literal notranslate"><span class="pre">scorer</span></code></a>.</p>
+<dd class="field-even"><p>The initialized <a class="reference internal" href="#solver.scorer.Scorer" title="solver.scorer.Scorer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scorer</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="solver.scorer.scorer.compute_city_total_dists">
-<code class="sig-name descname">compute_city_total_dists</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#scorer.compute_city_total_dists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.scorer.compute_city_total_dists" title="Permalink to this definition">¶</a></dt>
+<dt id="solver.scorer.Scorer.compute_city_total_dists">
+<code class="sig-name descname">compute_city_total_dists</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#Scorer.compute_city_total_dists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.Scorer.compute_city_total_dists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility function that compute the total dist for each city</p>
 <p>This methods computes the total dist for each city and stores the
 result into this class city_total_dists dictionary attribute.</p>
@@ -271,8 +271,8 @@ result into this class city_total_dists dictionary attribute.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="solver.scorer.scorer.score">
-<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#scorer.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.scorer.score" title="Permalink to this definition">¶</a></dt>
+<dt id="solver.scorer.Scorer.score">
+<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scorer.html#Scorer.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scorer.Scorer.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scoring function of scorer class</p>
 <p>This methods returns the score computed for the configuration applied
 to the geography.</p>

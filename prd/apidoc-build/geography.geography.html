@@ -189,34 +189,14 @@
 </style>
 <span class="target" id="module-geography.geography"></span><div class="section" id="geography-module-documentation">
 <h1>Geography module documentation<a class="headerlink" href="#geography-module-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This module docstring</p>
-<dl class="function">
-<dt id="geography.geography.dist">
-<code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">dist</code><span class="sig-paren">(</span><em class="sig-param">city1</em>, <em class="sig-param">city2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.dist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that returns euclidean distance between 2 cities</p>
-<p>This function returns the euclidean distance between 2 cities, where each
-of the two cities is a couple of coordinates.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>city1</strong> (<em>tuple of 2 coordinates</em>) – the first city</p></li>
-<li><p><strong>city2</strong> (<em>tuple of 2 coordinates</em>) – the second city</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The euclidean distance, being a float number.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dist</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
-<span class="go">5.0</span>
-</pre></div>
-</div>
-</dd></dl>
-
+<p>This module provides a geography class that represents a map of cities.
+The central part of this class is the distance matrix that stores the distances
+between each couple of cities.</p>
+<p>In further version, this class will be set as abstract, so that <em>real</em>
+geographies can be gotten from Google maps.</p>
 <dl class="class">
-<dt id="geography.geography.geography">
-<em class="property">class </em><code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">geography</code><span class="sig-paren">(</span><em class="sig-param">cities_count</em>, <em class="sig-param">cities_coordinates=None</em>, <em class="sig-param">cities_names=None</em>, <em class="sig-param">dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography">
+<em class="property">class </em><code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">Geography</code><span class="sig-paren">(</span><em class="sig-param">cities_count</em>, <em class="sig-param">cities_coordinates=None</em>, <em class="sig-param">cities_names=None</em>, <em class="sig-param">dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class defining a geography (cities and distance matrix)</p>
 <p>This class implements a geography with a list of named cities with their
@@ -228,8 +208,8 @@ associated coordinates in a plane. Helper functions enable to :</p>
 the repartition of some or all cities in pools</p></li>
 </ul>
 <dl class="attribute">
-<dt id="geography.geography.geography.cities_count">
-<code class="sig-name descname">cities_count</code><a class="headerlink" href="#geography.geography.geography.cities_count" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.cities_count">
+<code class="sig-name descname">cities_count</code><a class="headerlink" href="#geography.geography.Geography.cities_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Count of cities in the geography.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -239,8 +219,8 @@ the repartition of some or all cities in pools</p></li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="geography.geography.geography.coordinates">
-<code class="sig-name descname">coordinates</code><a class="headerlink" href="#geography.geography.geography.coordinates" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.coordinates">
+<code class="sig-name descname">coordinates</code><a class="headerlink" href="#geography.geography.Geography.coordinates" title="Permalink to this definition">¶</a></dt>
 <dd><p>[X,Y] where X is
 Xs of cities and Y is Ys of cities.</p>
 <dl class="field-list simple">
@@ -251,8 +231,8 @@ Xs of cities and Y is Ys of cities.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="geography.geography.geography.cities_names">
-<code class="sig-name descname">cities_names</code><a class="headerlink" href="#geography.geography.geography.cities_names" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.cities_names">
+<code class="sig-name descname">cities_names</code><a class="headerlink" href="#geography.geography.Geography.cities_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>an array of strings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -262,8 +242,8 @@ Xs of cities and Y is Ys of cities.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="geography.geography.geography.dist_matrix">
-<code class="sig-name descname">dist_matrix</code><a class="headerlink" href="#geography.geography.geography.dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.dist_matrix">
+<code class="sig-name descname">dist_matrix</code><a class="headerlink" href="#geography.geography.Geography.dist_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>the
 distance matrix of the geography.</p>
 <dl class="field-list simple">
@@ -274,9 +254,9 @@ distance matrix of the geography.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.geography.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cities_count</em>, <em class="sig-param">cities_coordinates=None</em>, <em class="sig-param">cities_names=None</em>, <em class="sig-param">dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructor method of geography</p>
+<dt id="geography.geography.Geography.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cities_count</em>, <em class="sig-param">cities_coordinates=None</em>, <em class="sig-param">cities_names=None</em>, <em class="sig-param">dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor method of Geography</p>
 <p>This method will construct a geography from parameters and initialize
 its distance matrix</p>
 <dl class="field-list simple">
@@ -294,14 +274,14 @@ euclidean distance</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The initialized <a class="reference internal" href="geography.html#module-geography" title="geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">geography</span></code></a>.</p>
+<dd class="field-even"><p>The initialized <a class="reference internal" href="#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.geography.draw_dist_matrix">
-<code class="sig-name descname">draw_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">axis_in</em>, <em class="sig-param">dist_matrix</em>, <em class="sig-param">names=None</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography.draw_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography.draw_dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.draw_dist_matrix">
+<code class="sig-name descname">draw_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">axis_in</em>, <em class="sig-param">dist_matrix</em>, <em class="sig-param">names=None</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.draw_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.draw_dist_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method that will populate an axis with the distance matrix</p>
 <p>This method is called through the show method and will populate the
 axis with the distance matrix.</p>
@@ -311,7 +291,7 @@ axis with the distance matrix.</p>
 <li><p><strong>axis_in</strong> (<em>axis</em>) – the axis to which draw the distance matrix.</p></li>
 <li><p><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
 the cities in the distance matrix. Is passed by the
-<a class="reference internal" href="#geography.geography.geography.show" title="geography.geography.geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</p></li>
+<a class="reference internal" href="#geography.geography.Geography.show" title="geography.geography.Geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – kwargs to be used in the drawing of the
 distance matrix (so far, only ‘annot’ is used).</p></li>
 </ul>
@@ -323,8 +303,8 @@ distance matrix (so far, only ‘annot’ is used).</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.geography.draw_map">
-<code class="sig-name descname">draw_map</code><span class="sig-paren">(</span><em class="sig-param">axis_in</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography.draw_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography.draw_map" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.draw_map">
+<code class="sig-name descname">draw_map</code><span class="sig-paren">(</span><em class="sig-param">axis_in</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.draw_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.draw_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method that will populate an axis with the map of the geograpy</p>
 <p>This method is called through the show method and will populate the
 axis with the map.</p>
@@ -333,7 +313,7 @@ axis with the map.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>axis_in</strong> (<em>axis</em>) – the axis to which draw the map of the geography.</p></li>
 <li><p><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
-the cities in the map. Is passed by the <a class="reference internal" href="#geography.geography.geography.show" title="geography.geography.geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</p></li>
+the cities in the map. Is passed by the <a class="reference internal" href="#geography.geography.Geography.show" title="geography.geography.Geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – kwargs to be used in the drawing of the
 map.</p></li>
 </ul>
@@ -345,8 +325,8 @@ map.</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.geography.init_dist_matrix">
-<code class="sig-name descname">init_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography.init_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography.init_dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.init_dist_matrix">
+<code class="sig-name descname">init_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.init_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.init_dist_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method which will initialize the distance matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -361,8 +341,8 @@ euclidean distance in the plane (<a class="reference internal" href="#geography.
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.geography.show">
-<code class="sig-name descname">show</code><span class="sig-paren">(</span><em class="sig-param">show_names=False</em>, <em class="sig-param">map_kwargs={}</em>, <em class="sig-param">dist_matrix_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography.show" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><em class="sig-param">show_names=False</em>, <em class="sig-param">map_kwargs={}</em>, <em class="sig-param">dist_matrix_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.show" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to show a graphical representation of the geography</p>
 <p>This method will draw the geography in a plane, and give a view of the
 distance matrix in the form of a seaborn heatmap.</p>
@@ -389,12 +369,12 @@ on.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.geography.show_config">
-<code class="sig-name descname">show_config</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">map_kwargs={}</em>, <em class="sig-param">dist_matrix_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#geography.show_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.geography.show_config" title="Permalink to this definition">¶</a></dt>
+<dt id="geography.geography.Geography.show_config">
+<code class="sig-name descname">show_config</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">map_kwargs={}</em>, <em class="sig-param">dist_matrix_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.show_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.show_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method which will give a representation of a configuration applied</p>
 <p>This method will show the geography map with the configuration
 highlighted and a reordered distance matrix. This function is build on
-top of the simpler <cite>show</cite> method of this class.</p>
+top of the simpler <a class="reference internal" href="#geography.geography.Geography.show" title="geography.geography.Geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method of this class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>configuration</strong> (<em>dict of iterables</em>) – the configuration to apply.
@@ -404,10 +384,34 @@ the iterables should be city indexes.</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>no city index should be inside multiple pools.</p>
+<p>No city index should be inside multiple pools.</p>
 </div>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="function">
+<dt id="geography.geography.dist">
+<code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">dist</code><span class="sig-paren">(</span><em class="sig-param">city1</em>, <em class="sig-param">city2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns euclidean distance between 2 cities</p>
+<p>This function returns the euclidean distance between 2 cities, where each
+of the two cities is a couple of coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>city1</strong> (<em>tuple of 2 coordinates</em>) – the first city</p></li>
+<li><p><strong>city2</strong> (<em>tuple of 2 coordinates</em>) – the second city</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The euclidean distance, being a float number.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dist</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">

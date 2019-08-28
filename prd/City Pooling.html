@@ -420,7 +420,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h3>
 <p>The below imports are used in this notebook (yet this would require some cleansing as some of them are not required here anymore).</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -447,7 +447,7 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 <p>As I update as I go the packages where the classes are defined, the lines below enable to reload my packages without having to restart the whole kernel.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -480,22 +480,22 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5>Random constructor<a class="headerlink" href="#Random-constructor" title="Permalink to this headline">¶</a></h5>
 <p>Constructor without parameters will just create a random map of n cities with default names, and compute the distance matrix with the “natural” euclidean distance. Explaination of the distance matrix is provided in the second example.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">geog</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">geography</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span></span><span class="n">geog</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">Geography</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">geog</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">show_names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_matrix_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;annot&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x235968545c8&gt;,
- &lt;matplotlib.axes._subplots.AxesSubplot at 0x23595f0d5c8&gt;)
+<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x2a5c227afc8&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x2a5c2605248&gt;)
 </pre></div>
 </div>
 </div>
@@ -511,7 +511,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5>Forced coordinates constructor<a class="headerlink" href="#Forced-coordinates-constructor" title="Permalink to this headline">¶</a></h5>
 <p>It is also possible to force cities coordinates with a numpy array of shape (2, n) or the names of the cities with an iterable of names. Here, I will create a meshgrid of 16 cities, with a unit space of 1 between cities.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -537,18 +537,18 @@ work on real life data… - last but not least, when I first got to see some sol
     <span class="s2">&quot;15. Nancy&quot;</span>
 <span class="p">]</span>
 
-<span class="n">geog</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">geography</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">cities_coordinates</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">cities_names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+<span class="n">geog</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">Geography</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">cities_coordinates</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">cities_names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
 <span class="n">geog</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">show_names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_matrix_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;annot&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x23595e7bdc8&gt;,
- &lt;matplotlib.axes._subplots.AxesSubplot at 0x23595e95088&gt;)
+<span></span>(&lt;matplotlib.axes._subplots.AxesSubplot at 0x2a5c2d86cc8&gt;,
+ &lt;matplotlib.axes._subplots.AxesSubplot at 0x2a5c2d62d48&gt;)
 </pre></div>
 </div>
 </div>
@@ -576,7 +576,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5><code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as set<a class="headerlink" href="#show_config-with-pools-as-set" title="Permalink to this headline">¶</a></h5>
 <p>A way to modelize a pool would be a python set, as it enforces the fact that inside a pool, a city may only appear once. Yet it has a serious drawback.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -599,7 +599,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <h5><code class="docutils literal notranslate"><span class="pre">show_config</span></code> with pools as lists<a class="headerlink" href="#show_config-with-pools-as-lists" title="Permalink to this headline">¶</a></h5>
 <p>If I want to maintain an order inside each pool - which I will want to do later on - I need to use lists (see just below).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -628,7 +628,7 @@ work on real life data… - last but not least, when I first got to see some sol
 <p>Let’s now try to compare the (trivial) solution of this problem (a 4x4 grid is not much of a challenge!) and a random one. For this example, I will try to minimize the total distance traveled by all teams.</p>
 <p>First, I need to create a random configuration.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -647,12 +647,12 @@ work on real life data… - last but not least, when I first got to see some sol
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
-[ 1  3 11  7  8 15  4 10  6  2  9 12 14  0 13  5]
-{0: [1, 3, 11, 7], 1: [8, 15, 4, 10], 2: [6, 2, 9, 12], 3: [14, 0, 13, 5]}
+[14  9  0  2  1  8 12  7 13 11  4  3  6 15  5 10]
+{0: [14, 9, 0, 2], 1: [1, 8, 12, 7], 2: [13, 11, 4, 3], 3: [6, 15, 5, 10]}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -669,7 +669,7 @@ work on real life data… - last but not least, when I first got to see some sol
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -693,13 +693,18 @@ work on real life data… - last but not least, when I first got to see some sol
 <div class="section" id="What-for?">
 <h3>What for?<a class="headerlink" href="#What-for?" title="Permalink to this headline">¶</a></h3>
 <p>Obviously, to solve the problem! That means: find the configuration that minimize my criterion cost.</p>
-<p>The solver package will have some submodules: - a <code class="docutils literal notranslate"><span class="pre">scorer</span></code> module, that will provide costing functions and compute the cost of a configuration applied to a geography - a <code class="docutils literal notranslate"><span class="pre">scoring_funcs</span></code> module, which will be a library of various scoring functions - a <code class="docutils literal notranslate"><span class="pre">solver</span></code> module, that will provide various algorithms to find a globally or locally optimal solution to the problem</p>
+<p>The solver package will have some submodules:</p>
+<ul class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">scorer</span></code> module, that will provide a class enabling to compute the cost of a configuration applied to a geography</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">scoring_funcs</span></code> module, which will be a library of various scoring functions</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">solver</span></code> module, that will provide various algorithms to find a globally or locally optimal solution to the problem</p></li>
+</ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">myScorer</span> <span class="o">=</span> <span class="n">scorer</span><span class="o">.</span><span class="n">scorer</span><span class="p">(</span><span class="n">geog</span><span class="p">)</span>
+<span></span><span class="n">myScorer</span> <span class="o">=</span> <span class="n">scorer</span><span class="o">.</span><span class="n">Scorer</span><span class="p">(</span><span class="n">geog</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">myScorer</span><span class="o">.</span><span class="n">score</span><span class="p">({</span><span class="mi">0</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">],</span> <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">]}))</span>
 </pre></div>
 </div>
