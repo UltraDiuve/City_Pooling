@@ -195,10 +195,30 @@ score (i.e. cost) of a particular configuration on a given
 <a class="reference internal" href="geography.geography.html#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
 <p>A scoring function is usually affected to a <a class="reference internal" href="solver.scorer.html#solver.scorer.Scorer" title="solver.scorer.Scorer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scorer</span></code></a>
 object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some functions are <em>regular</em> functions that just return a value (e.g.
+<a class="reference internal" href="#solver.scoring_funcs.city_sum" title="solver.scoring_funcs.city_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">city_sum()</span></code></a>) but other are <em>parametric</em> functions that return another
+function (e.g. <a class="reference internal" href="#solver.scoring_funcs.city_pow_sum" title="solver.scoring_funcs.city_pow_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">city_pow_sum()</span></code></a>).
+Be aware of that when referencing a scoring function in a
+<a class="reference internal" href="solver.scorer.html#solver.scorer.Scorer" title="solver.scorer.Scorer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scorer</span></code></a>.</p>
+</div>
 <dl class="function">
 <dt id="solver.scoring_funcs.city_max">
 <code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_max</code><span class="sig-paren">(</span><em class="sig-param">city_dists</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the max total distance amongst all cities</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="solver.scoring_funcs.city_pow_sum">
+<code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_pow_sum</code><span class="sig-paren">(</span><em class="sig-param">power</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_pow_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_pow_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sum of the total distance to power <em>power</em> for each city</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="solver.scoring_funcs.city_sum">
+<code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_sum</code><span class="sig-paren">(</span><em class="sig-param">city_dists</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sum of the total distance for each city</p>
 </dd></dl>
 
 </div>

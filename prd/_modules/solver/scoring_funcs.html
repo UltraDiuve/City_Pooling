@@ -155,6 +155,13 @@
 
 <span class="sd">A scoring function is usually affected to a :class:`~solver.scorer.Scorer`</span>
 <span class="sd">object.</span>
+
+<span class="sd">.. note::</span>
+<span class="sd">    Some functions are *regular* functions that just return a value (e.g.</span>
+<span class="sd">    :func:`city_sum`) but other are *parametric* functions that return another</span>
+<span class="sd">    function (e.g. :func:`city_pow_sum`).</span>
+<span class="sd">    Be aware of that when referencing a scoring function in a</span>
+<span class="sd">    :class:`~solver.scorer.Scorer`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
@@ -163,6 +170,22 @@
 <span class="sd">    Computes the max total distance amongst all cities</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="city_sum"><a class="viewcode-back" href="../../apidoc-build/solver.scoring_funcs.html#solver.scoring_funcs.city_sum">[docs]</a><span class="k">def</span> <span class="nf">city_sum</span><span class="p">(</span><span class="n">city_dists</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the sum of the total distance for each city</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="city_pow_sum"><a class="viewcode-back" href="../../apidoc-build/solver.scoring_funcs.html#solver.scoring_funcs.city_pow_sum">[docs]</a><span class="k">def</span> <span class="nf">city_pow_sum</span><span class="p">(</span><span class="n">power</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the sum of the total distance to power *power* for each city</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">city_dists</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">city_dist</span> <span class="o">**</span> <span class="n">power</span> <span class="k">for</span> <span class="n">city_dist</span> <span class="ow">in</span> <span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()]))</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">myfunc</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
