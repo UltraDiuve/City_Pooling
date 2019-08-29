@@ -2,7 +2,7 @@
 Scorer module documentation
 ---------------------------
 
-This module probides a :class:`Scorer` class that will enable one to get the
+This module provides a :class:`Scorer` class that will enable one to get the
 score of a configuration on a :class:`~geography.geography.Geography`.
 
 Computing a score is the first necessary step to find the configuration that
