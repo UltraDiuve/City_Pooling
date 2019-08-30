@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Scoring_funcs module documentation &mdash; City Pooling 1.0.1 documentation</title>
+  <title>scoring_funcs module documentation &mdash; City Pooling 1.0.1 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Build and Deploy" href="../Build and deploy.html" />
-    <link rel="prev" title="Scorer module documentation" href="solver.scorer.html" /> 
+    <link rel="prev" title="scorer module documentation" href="solver.scorer.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,8 +87,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="solver.html">solver package</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="solver.html#solver-package-documentation">Solver package documentation</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="solver.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="solver.scorer.html">Scorer module documentation</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Scoring_funcs module documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.scorer.html">scorer module documentation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">scoring_funcs module documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -145,7 +145,7 @@
         
           <li><a href="solver.html">solver package</a> &raquo;</li>
         
-      <li>Scoring_funcs module documentation</li>
+      <li>scoring_funcs module documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -189,7 +189,7 @@
 }
 </style>
 <span class="target" id="module-solver.scoring_funcs"></span><div class="section" id="scoring-funcs-module-documentation">
-<h1>Scoring_funcs module documentation<a class="headerlink" href="#scoring-funcs-module-documentation" title="Permalink to this headline">¶</a></h1>
+<h1>scoring_funcs module documentation<a class="headerlink" href="#scoring-funcs-module-documentation" title="Permalink to this headline">¶</a></h1>
 <p>This module provides various scoring functions that enable one to compute the
 score (i.e. cost) of a particular configuration on a given
 <a class="reference internal" href="geography.geography.html#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
@@ -207,18 +207,99 @@ Be aware of that when referencing a scoring function in a
 <dt id="solver.scoring_funcs.city_max">
 <code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_max</code><span class="sig-paren">(</span><em class="sig-param">city_dists</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the max total distance amongst all cities</p>
+<p>This basic function returns the maximum total distance for a single city.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>city_dists</strong> (<em>dict of numbers</em>) – the total distances for each city. The
+keys of the dictionary being the cities indexes.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The maximum total distance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="solver.scoring_funcs.city_sum">
+<code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_sum</code><span class="sig-paren">(</span><em class="sig-param">city_dists</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sum of the total distance for all cities</p>
+<p>This basic function returns the sum of the total distance for all
+cities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>city_dists</strong> (<em>dict of numbers</em>) – the total distances for each city. The
+keys of the dictionary being the cities indexes.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sum of the total distances.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="solver.scoring_funcs.city_pow_sum">
 <code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_pow_sum</code><span class="sig-paren">(</span><em class="sig-param">power</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_pow_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_pow_sum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the sum of the total distance to power <em>power</em> for each city</p>
+<p>This function returns the sum of the total distances elevated to the power
+<em>power</em> for all cities.</p>
+<p>Using a power stricly greater than 1 makes it so that configurations with
+cities having high total distances get a greater score. It tends to make
+the scoring system more egalitarianist (as opposed to utilitarianist).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function returns another function that can be then called on a
+dictionary of cities distances. See <a class="reference internal" href="#examples"><span class="std std-ref">Examples</span></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>power</strong> (<em>number</em>) – the power to apply to each city total dist before
+summing.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sum of the total distances elevated to the power <em>power</em>.</p>
+</dd>
+</dl>
+<p class="rubric" id="examples">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">myscorefunc</span> <span class="o">=</span> <span class="n">city_pow_sum</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">myscorefunc</span><span class="p">(</span><span class="n">mydict</span><span class="p">))</span>
+<span class="go">101</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
-<dt id="solver.scoring_funcs.city_sum">
-<code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_sum</code><span class="sig-paren">(</span><em class="sig-param">city_dists</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_sum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the sum of the total distance for each city</p>
+<dt id="solver.scoring_funcs.city_lambda_sum">
+<code class="sig-prename descclassname">solver.scoring_funcs.</code><code class="sig-name descname">city_lambda_sum</code><span class="sig-paren">(</span><em class="sig-param">lambdafunc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/solver/scoring_funcs.html#city_lambda_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solver.scoring_funcs.city_lambda_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sum of the total distance after having applied lambda func</p>
+<p>This function returns the sum of the total distances after having applied
+<em>lamda</em> function for each of them.</p>
+<p>Using a convex lambda function makes it so that configurations with
+cities having high total distances get a greater score. It tends to make
+the scoring system more egalitarianist (as opposed to utilitarianist).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function returns another function that can be then called on a
+dictionary of cities distances. See <a class="reference internal" href="#examples2"><span class="std std-ref">Examples</span></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lambdafunc</strong> (<em>function</em>) – the function to apply to each city total dist
+before summing.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sum of the total distances after having applied the lambdafunc
+function.</p>
+</dd>
+</dl>
+<p class="rubric" id="examples2">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myscorefunc</span> <span class="o">=</span> <span class="n">city_lambda_sum</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">myscorefunc</span><span class="p">(</span><span class="n">mydict</span><span class="p">))</span>
+<span class="go">151.13144093</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -234,7 +315,7 @@ Be aware of that when referencing a scoring function in a
         <a href="../Build and deploy.html" class="btn btn-neutral float-right" title="Build and Deploy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="solver.scorer.html" class="btn btn-neutral float-left" title="Scorer module documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="solver.scorer.html" class="btn btn-neutral float-left" title="scorer module documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -146,7 +146,7 @@
             
   <h1>Source code for solver.scoring_funcs</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Scoring_funcs module documentation</span>
+<span class="sd">scoring_funcs module documentation</span>
 <span class="sd">----------------------------------</span>
 
 <span class="sd">This module provides various scoring functions that enable one to compute the</span>
@@ -168,13 +168,32 @@
 <div class="viewcode-block" id="city_max"><a class="viewcode-back" href="../../apidoc-build/solver.scoring_funcs.html#solver.scoring_funcs.city_max">[docs]</a><span class="k">def</span> <span class="nf">city_max</span><span class="p">(</span><span class="n">city_dists</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the max total distance amongst all cities</span>
+
+<span class="sd">    This basic function returns the maximum total distance for a single city.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        city_dists (dict of numbers): the total distances for each city. The</span>
+<span class="sd">            keys of the dictionary being the cities indexes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The maximum total distance.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
 
 
 <div class="viewcode-block" id="city_sum"><a class="viewcode-back" href="../../apidoc-build/solver.scoring_funcs.html#solver.scoring_funcs.city_sum">[docs]</a><span class="k">def</span> <span class="nf">city_sum</span><span class="p">(</span><span class="n">city_dists</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Computes the sum of the total distance for each city</span>
+<span class="sd">    Computes the sum of the total distance for all cities</span>
+
+<span class="sd">    This basic function returns the sum of the total distance for all</span>
+<span class="sd">    cities.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        city_dists (dict of numbers): the total distances for each city. The</span>
+<span class="sd">            keys of the dictionary being the cities indexes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The sum of the total distances.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
 
@@ -182,9 +201,73 @@
 <div class="viewcode-block" id="city_pow_sum"><a class="viewcode-back" href="../../apidoc-build/solver.scoring_funcs.html#solver.scoring_funcs.city_pow_sum">[docs]</a><span class="k">def</span> <span class="nf">city_pow_sum</span><span class="p">(</span><span class="n">power</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the sum of the total distance to power *power* for each city</span>
+
+<span class="sd">    This function returns the sum of the total distances elevated to the power</span>
+<span class="sd">    *power* for all cities.</span>
+
+<span class="sd">    Using a power stricly greater than 1 makes it so that configurations with</span>
+<span class="sd">    cities having high total distances get a greater score. It tends to make</span>
+<span class="sd">    the scoring system more egalitarianist (as opposed to utilitarianist).</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This function returns another function that can be then called on a</span>
+<span class="sd">        dictionary of cities distances. See :ref:`Examples`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        power (number): the power to apply to each city total dist before</span>
+<span class="sd">            summing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The sum of the total distances elevated to the power *power*.</span>
+
+<span class="sd">    .. _Examples:</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; myscorefunc = city_pow_sum(2)</span>
+<span class="sd">        &gt;&gt;&gt; mydict = {0: 1, 1: 10}</span>
+<span class="sd">        &gt;&gt;&gt; print(myscorefunc(mydict))</span>
+<span class="sd">        101</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">city_dists</span><span class="p">):</span>
         <span class="k">return</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">city_dist</span> <span class="o">**</span> <span class="n">power</span> <span class="k">for</span> <span class="n">city_dist</span> <span class="ow">in</span> <span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()]))</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">myfunc</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="city_lambda_sum"><a class="viewcode-back" href="../../apidoc-build/solver.scoring_funcs.html#solver.scoring_funcs.city_lambda_sum">[docs]</a><span class="k">def</span> <span class="nf">city_lambda_sum</span><span class="p">(</span><span class="n">lambdafunc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the sum of the total distance after having applied lambda func</span>
+
+<span class="sd">    This function returns the sum of the total distances after having applied</span>
+<span class="sd">    *lamda* function for each of them.</span>
+
+<span class="sd">    Using a convex lambda function makes it so that configurations with</span>
+<span class="sd">    cities having high total distances get a greater score. It tends to make</span>
+<span class="sd">    the scoring system more egalitarianist (as opposed to utilitarianist).</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This function returns another function that can be then called on a</span>
+<span class="sd">        dictionary of cities distances. See :ref:`Examples2`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lambdafunc (function): the function to apply to each city total dist</span>
+<span class="sd">            before summing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The sum of the total distances after having applied the lambdafunc</span>
+<span class="sd">        function.</span>
+
+<span class="sd">    .. _Examples2:</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import math</span>
+<span class="sd">        &gt;&gt;&gt; myscorefunc = city_lambda_sum(math.exp)</span>
+<span class="sd">        &gt;&gt;&gt; mydict = {0: 1, 1: 10}</span>
+<span class="sd">        &gt;&gt;&gt; print(myscorefunc(mydict))</span>
+<span class="sd">        151.13144093</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">city_dists</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">lambdafunc</span><span class="p">(</span><span class="n">city_dist</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">city_dist</span> <span class="ow">in</span> <span class="n">city_dists</span><span class="o">.</span><span class="n">values</span><span class="p">()]))</span>
     <span class="k">return</span><span class="p">(</span><span class="n">myfunc</span><span class="p">)</span></div>
 </pre></div>
 

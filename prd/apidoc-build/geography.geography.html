@@ -84,7 +84,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../City Pooling.html">City Pooling Notebook</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="mods.html">Packages documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="geography.html">geography package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="geography.html#geography-package-documentation">Geography package documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geography.html#geography-package-documentation">geography package documentation</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="geography.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Geography module documentation</a></li>
 </ul>
@@ -194,6 +194,58 @@ The central part of this class is the distance matrix that stores the distances
 between each couple of cities.</p>
 <p>In further version, this class will be set as abstract, so that <em>real</em>
 geographies can be gotten from Google maps.</p>
+<dl class="function">
+<dt id="geography.geography.dist">
+<code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">dist</code><span class="sig-paren">(</span><em class="sig-param">city1</em>, <em class="sig-param">city2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns euclidean distance between 2 cities</p>
+<p>This function returns the euclidean distance between 2 cities, where each
+of the two cities is a couple of coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>city1</strong> (<em>tuple of 2 coordinates</em>) – the first city</p></li>
+<li><p><strong>city2</strong> (<em>tuple of 2 coordinates</em>) – the second city</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The euclidean distance, being a float number.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dist</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="geography.geography.permute_array">
+<code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">permute_array</code><span class="sig-paren">(</span><em class="sig-param">arr</em>, <em class="sig-param">seq</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#permute_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.permute_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to “square permute” a 2D array</p>
+<p>This function’s purpose is to enable distance matrices permutations. That
+is, for example, permute both lines and columns of the array so as to
+reorder a distance matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>numpy array</em>) – the array to permute. It should be square of size n.</p></li>
+<li><p><strong>seq</strong> (<em>iterable of int</em>) – a permutation of range(n) (should be of length n
+and contain every integer from 0 to n-1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of the original array, after the permutation has been applied.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">permute_array</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="go">[[1 3 2] [7 9 8] [4 6 5]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="class">
 <dt id="geography.geography.Geography">
 <em class="property">class </em><code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">Geography</code><span class="sig-paren">(</span><em class="sig-param">cities_count</em>, <em class="sig-param">cities_coordinates=None</em>, <em class="sig-param">cities_names=None</em>, <em class="sig-param">dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography" title="Permalink to this definition">¶</a></dt>
@@ -254,6 +306,22 @@ distance matrix of the geography.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="geography.geography.Geography.init_dist_matrix">
+<code class="sig-name descname">init_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.init_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.init_dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method which will initialize the distance matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>function</em>) – a distance function which returns a positive
+number from a couple of cities. If unspecified, will use the
+euclidean distance in the plane (<a class="reference internal" href="#geography.geography.dist" title="geography.geography.dist"><code class="xref py py-func docutils literal notranslate"><span class="pre">dist()</span></code></a> function).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="geography.geography.Geography.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">cities_count</em>, <em class="sig-param">cities_coordinates=None</em>, <em class="sig-param">cities_names=None</em>, <em class="sig-param">dist_func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor method of Geography</p>
@@ -275,29 +343,6 @@ euclidean distance</p></li>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The initialized <a class="reference internal" href="#geography.geography.Geography" title="geography.geography.Geography"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geography</span></code></a>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="geography.geography.Geography.draw_dist_matrix">
-<code class="sig-name descname">draw_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">axis_in</em>, <em class="sig-param">dist_matrix</em>, <em class="sig-param">names=None</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.draw_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.draw_dist_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method that will populate an axis with the distance matrix</p>
-<p>This method is called through the show method and will populate the
-axis with the distance matrix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>axis_in</strong> (<em>axis</em>) – the axis to which draw the distance matrix.</p></li>
-<li><p><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
-the cities in the distance matrix. Is passed by the
-<a class="reference internal" href="#geography.geography.Geography.show" title="geography.geography.Geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</p></li>
-<li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – kwargs to be used in the drawing of the
-distance matrix (so far, only ‘annot’ is used).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Nothing.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -325,14 +370,21 @@ map.</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="geography.geography.Geography.init_dist_matrix">
-<code class="sig-name descname">init_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">func=&lt;function dist&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.init_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.init_dist_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method which will initialize the distance matrix</p>
+<dt id="geography.geography.Geography.draw_dist_matrix">
+<code class="sig-name descname">draw_dist_matrix</code><span class="sig-paren">(</span><em class="sig-param">axis_in</em>, <em class="sig-param">dist_matrix</em>, <em class="sig-param">names=None</em>, <em class="sig-param">show_names=False</em>, <em class="sig-param">kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#Geography.draw_dist_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.Geography.draw_dist_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that will populate an axis with the distance matrix</p>
+<p>This method is called through the show method and will populate the
+axis with the distance matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>func</strong> (<em>function</em>) – a distance function which returns a positive
-number from a couple of cities. If unspecified, will use the
-euclidean distance in the plane (<a class="reference internal" href="#geography.geography.dist" title="geography.geography.dist"><code class="xref py py-func docutils literal notranslate"><span class="pre">dist()</span></code></a> function).</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis_in</strong> (<em>axis</em>) – the axis to which draw the distance matrix.</p></li>
+<li><p><strong>show_names</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether or not to show the names of
+the cities in the distance matrix. Is passed by the
+<a class="reference internal" href="#geography.geography.Geography.show" title="geography.geography.Geography.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a> method.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – kwargs to be used in the drawing of the
+distance matrix (so far, only ‘annot’ is used).</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Nothing.</p>
@@ -388,58 +440,6 @@ the iterables should be city indexes.</p>
 </div>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="function">
-<dt id="geography.geography.dist">
-<code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">dist</code><span class="sig-paren">(</span><em class="sig-param">city1</em>, <em class="sig-param">city2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.dist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that returns euclidean distance between 2 cities</p>
-<p>This function returns the euclidean distance between 2 cities, where each
-of the two cities is a couple of coordinates.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>city1</strong> (<em>tuple of 2 coordinates</em>) – the first city</p></li>
-<li><p><strong>city2</strong> (<em>tuple of 2 coordinates</em>) – the second city</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The euclidean distance, being a float number.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dist</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
-<span class="go">5.0</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="function">
-<dt id="geography.geography.permute_array">
-<code class="sig-prename descclassname">geography.geography.</code><code class="sig-name descname">permute_array</code><span class="sig-paren">(</span><em class="sig-param">arr</em>, <em class="sig-param">seq</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geography/geography.html#permute_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.geography.permute_array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to “square permute” a 2D array</p>
-<p>This function’s purpose is to enable distance matrices permutations. That
-is, for example, permute both lines and columns of the array so as to
-reorder a distance matrix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>arr</strong> (<em>numpy array</em>) – the array to permute. It should be square of size n.</p></li>
-<li><p><strong>seq</strong> (<em>iterable of int</em>) – a permutation of range(n) (should be of length n
-and contain every integer from 0 to n-1)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A copy of the original array, after the permutation has been applied.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">permute_array</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
-<span class="go">[[1 3 2] [7 9 8] [4 6 5]]</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </div>
