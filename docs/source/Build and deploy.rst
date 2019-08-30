@@ -123,8 +123,8 @@ test files looks like:
     import numpy as np
     ...
 
-Simply running pytest in the root directory would result in a 'ModuleNotFoundError'
-as `src` is not in the Python path. 
+Simply running pytest in the root directory would result in a
+'ModuleNotFoundError' as `src` is not in the Python path. 
 
 .. image:: img/ModuleNotFound_pytest_error.png
    :width: 100%   

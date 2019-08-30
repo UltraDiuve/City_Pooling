@@ -1,7 +1,9 @@
 """
 Unit tests for the solver package modules
 """
+import math
 
+import pytest
 
 import src.solver.scorer as scorer
 import src.solver.scoring_funcs as scoring_funcs
@@ -24,3 +26,6 @@ class TestScoringFunctions(object):
         assert(scoring_funcs.city_pow_sum(1)(mydict) == 65.8)
         mydict2 = {0: 10, 1: 100}
         assert(scoring_funcs.city_pow_sum(2)(mydict2) == 10100)
+        mydict3 = {0: 1, 1: 5}
+        assert(scoring_funcs.city_lambda_sum(math.exp)(mydict3) ==
+               pytest.approx(151.13144093))

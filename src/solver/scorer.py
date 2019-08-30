@@ -1,5 +1,5 @@
 """
-Scorer module documentation
+scorer module documentation
 ---------------------------
 
 This module provides a :class:`Scorer` class that will enable one to get the

@@ -1,5 +1,5 @@
 """
-Geography package documentation
+geography package documentation
 -------------------------------
 
 This package provides all the required objects to describe a Geography, on

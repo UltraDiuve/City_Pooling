@@ -55,6 +55,8 @@ autodoc_default_options = {
     'special-members': '__init__'
 }
 
+autodoc_member_order = 'bysource'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
