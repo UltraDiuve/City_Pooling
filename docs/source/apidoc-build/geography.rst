@@ -2,9 +2,9 @@ geography package
 =================
 
 .. automodule:: geography
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Submodules
 ----------
@@ -12,3 +12,4 @@ Submodules
 .. toctree::
 
    geography.geography
+

@@ -2,9 +2,9 @@ solver package
 ==============
 
 .. automodule:: solver
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Submodules
 ----------
@@ -13,3 +13,4 @@ Submodules
 
    solver.scorer
    solver.scoring_funcs
+
