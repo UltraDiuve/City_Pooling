@@ -12,6 +12,7 @@ gives the lowest score (i.e. cost) for a given
 
 
 # imports
+import matplotlib.pyplot as plt
 import numpy as np
 
 # local imports
@@ -81,3 +82,23 @@ class Scorer():
         """
         self.compute_city_total_dists(configuration)
         return(self._scoring_func(self.city_total_dists))
+
+    def show(self, configuration):
+        """ Method to show a graphical representation of the scoring
+
+        This method will show the detail of the configuration scoring.
+
+        Args:
+            configuration (iterable): the configuration on which the score must
+                be computed.
+
+        Returns:
+            Nothing.
+        """
+        fig, axs = plt.subplots(1, 1, figsize=(20, 10))
+        pools_cmap = ['r', 'g', 'b', 'k', 'c', 'y', 'm']
+        colorlist = []
+        for pool_num, pool_content in configuration.items():
+            colorlist.extend(len(pool_content) * pools_cmap[pool_num:pool_num])
+
+        axs.bar()

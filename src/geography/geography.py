@@ -1,5 +1,5 @@
 """
-Geography module documentation
+geography module documentation
 ------------------------------
 
 This module provides a geography class that represents a map of cities.
@@ -8,6 +8,7 @@ between each couple of cities.
 
 In further version, this class will be set as abstract, so that *real*
 geographies can be gotten from Google maps.
+
 """
 
 

@@ -1,5 +1,5 @@
 """
-Solver package documentation
+solver package documentation
 ----------------------------
 
 This package provides all the objects required to solve the pooling problem on
